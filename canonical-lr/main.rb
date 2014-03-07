@@ -23,7 +23,7 @@ def closure items
   items.each do |item|
     if item[1][item[2]] and is_nonterminal(item[1][item[2]])
       $productions[item[1][item[2]]].each do |rule|
-        k << [item[1][item[2]], rule.gsub(/lambda/, ''), 0]
+        k << [item[1][item[2]], rule, 0]
       end
     end
   end
@@ -65,13 +65,13 @@ filestring.split("\n").each do |line|
   if !line.match(/^\s*$/)
     tokens = line.gsub(/\s+/m, ' ').strip.split(" ")
     i = 0
-    rhs = ""
+    rhs = []
     tokens.each do |token|
       if i == 0 and token != '|'
         current_production = token
         $productions[current_production] ||= []
         grammar_symbols << token unless grammar_symbols.include?(token)
-      elsif token != '->' and token != '|'
+      elsif token != '->' and token != '|' and token != 'lambda'
         rhs << token
         grammar_symbols << token unless grammar_symbols.include?(token)
       end
@@ -82,6 +82,14 @@ filestring.split("\n").each do |line|
   end
 end
 
+# Print out the production rules
+puts "Grammar Rules"
+$productions.each do |key, value|
+  value.each do |rhs|
+    puts "#{key} -> #{rhs.join(' ')}"
+  end
+end
+puts ""
 
 # Find the item sets of the LR(0) parse table
 states = []
@@ -105,14 +113,6 @@ begin
 end while states.size == m
 
 # Print out the results
-puts "Grammar Rules"
-$productions.each do |key, value|
-  value.each do |rhs|
-    puts "#{key} -> #{rhs}"
-  end
-end
-puts ""
-
 puts "Canonical LR States"
 i = 0
 states.each do |itemset|
@@ -125,7 +125,7 @@ states.each do |itemset|
     end
     rhs_with_dot = item[1].clone
     rhs_with_dot.insert(item[2], ".")
-    puts "#{item[0]} -> #{rhs_with_dot}"
+    puts "#{item[0]} -> #{rhs_with_dot.join(' ')}"
     j += 1
   end
   i += 1
