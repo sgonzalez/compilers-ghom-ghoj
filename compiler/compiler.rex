@@ -1,9 +1,14 @@
 class CompilerScanner
-rule
-  \d+	{ [:DIGIT, text.to_i] }
-  \w+	{ [:WORD, text] }
-  
+macro
+  BLANK     [\ \t]+
 
+rule
+  BLANK         # no action
+  \d+           { [:digit, text.to_i] }
+  \w+           { [:word, text] }
+  \n
+  .             { [text, text] }
+  
 inner
   def tokenize(code)
     scan_setup(code)
