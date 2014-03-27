@@ -51,6 +51,7 @@ class CompilerLanguage < Racc::Parser
     token
   end
 
+<<<<<<< HEAD
   def _next_token
     text = @ss.peek(1)
     @lineno  +=  1  if text == "\n"
@@ -80,6 +81,48 @@ class CompilerLanguage < Racc::Parser
 
       when (text = @ss.scan(/./))
          action { [text, text] }
+=======
+  def scan_evaluate( str )
+    scan_setup
+    @rex_tokens = []
+    @lineno  =  1
+    ss = StringScanner.new(str)
+    state = nil
+    until ss.eos?
+      text = ss.peek(1)
+      @lineno  +=  1  if text == "\n"
+      case state
+      when nil
+        case
+        when (text = ss.scan(/BLANK/))
+          ;
+
+        when (text = ss.scan(/\d+/))
+           @rex_tokens.push action { [:digit, text.to_i] }
+
+        when (text = ss.scan(/const/))
+           @rex_tokens.push action { [:const, text] }
+
+        when (text = ss.scan(/int/))
+           @rex_tokens.push action { [:int, text] }
+
+        when (text = ss.scan(/,/))
+           @rex_tokens.push action { [:comma, text] }
+
+        when (text = ss.scan(/\w+/))
+           @rex_tokens.push action { [:word, text] }
+
+        when (text = ss.scan(/\n/))
+          ;
+
+        when (text = ss.scan(/./))
+           @rex_tokens.push action { [text, text] }
+
+        else
+          text = ss.string[ss.pos .. -1]
+          raise  ScanError, "can not match: '" + text + "'"
+        end  # if
+>>>>>>> 2fef61298a6b02bdfda2962d6ac65ea112843b29
 
       else
         text = @ss.string[@ss.pos .. -1]
