@@ -4,10 +4,9 @@ require './compiler.rex.rb'
 require './compiler.tab.rb'
 
 class Compiler
-  @scanner = CompilerScanner.new
+  @lang = CompilerLanguage.new
   while true
     input = STDIN.gets
-    puts input
-    @scanner.tokenize(input)
+    @lang.parse(input)
   end
 end
