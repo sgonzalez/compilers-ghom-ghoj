@@ -5,7 +5,16 @@
 #
 
 require 'racc/parser.rb'
+
+  require './compiler.rex.rb'
+ 
 class CompilerLanguage < Racc::Parser
+
+module_eval(<<'...end compiler.y/module_eval...', 'compiler.y', 11)
+  def parse(input)
+    scan_str(input)
+  end
+...end compiler.y/module_eval...
 ##### State transition tables begin ###
 
 racc_action_table = [
