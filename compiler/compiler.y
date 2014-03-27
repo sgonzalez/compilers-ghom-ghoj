@@ -1,9 +1,5 @@
-class CompilerParser
+class CompilerLanguage
 rule
-  target: exp { print val[0] }
-
-  exp: exp '+' exp
-     | exp '*' exp
-     | '(' exp ')'
-     | NUMBER
+  expression : DIGIT
+  | DIGIT ADD DIGIT    { return val[0] + val[2] }
 end
