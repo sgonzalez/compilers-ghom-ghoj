@@ -56,25 +56,76 @@ class CompilerLanguage < Racc::Parser
           ;
 
         when (text = ss.scan(/\d+/))
-           @rex_tokens.push action { [:digit, text.to_i] }
+           @rex_tokens.push action { [:NUMBER, text.to_i] }
+
+        when (text = ss.scan(/return/))
+           @rex_tokens.push action { [:RETURN, text] }
+
+        when (text = ss.scan(/<</))
+           @rex_tokens.push action { [:BIT_SHIFT, text] }
+
+        when (text = ss.scan(/-/))
+           @rex_tokens.push action { [:MINUS, text] }
+
+        when (text = ss.scan(/+/))
+           @rex_tokens.push action { [:PLUS, text] }
+
+        when (text = ss.scan(/\*/))
+           @rex_tokens.push action { [:MULTIPLY, text] }
+
+        when (text = ss.scan(///))
+           @rex_tokens.push action { [:FOR_SLASH, text] }
+
+        when (text = ss.scan(/\!=/))
+           @rex_tokens.push action { [:NOT_EQUALS, text] }
+
+        when (text = ss.scan(/==/))
+           @rex_tokens.push action { [:EQUALS_EQUALS, text] }
+
+        when (text = ss.scan(/<=/))
+           @rex_tokens.push action { [:LESS_EQUALS, text] }
+
+        when (text = ss.scan(/>=/))
+           @rex_tokens.push action { [:GREATER_EQUALS, text] }
+
+        when (text = ss.scan(/\(/))
+           @rex_tokens.push action { [:OPEN_PAREN, text] }
+
+        when (text = ss.scan(/\)/))
+           @rex_tokens.push action { [:CLOSE_PAREN, text] }
+
+        when (text = ss.scan(/\{/))
+           @rex_tokens.push action { [:OPEN_CURLY, text] }
+
+        when (text = ss.scan(/\}/))
+           @rex_tokens.push action { [:CLOSE_CURLY, text] }
+
+        when (text = ss.scan(/=/))
+           @rex_tokens.push action { [:EQUALS, text] }
 
         when (text = ss.scan(/const/))
-           @rex_tokens.push action { [:const, text] }
+           @rex_tokens.push action { [:CONST, text] }
 
         when (text = ss.scan(/int/))
-           @rex_tokens.push action { [:int, text] }
+           @rex_tokens.push action { [:INT, text] }
 
         when (text = ss.scan(/,/))
-           @rex_tokens.push action { [:comma, text] }
+           @rex_tokens.push action { [:COMMA, text] }
+
+        when (text = ss.scan(/;/))
+           @rex_tokens.push action { [:SEMICOLON, text] }
+
+        when (text = ss.scan(/\w(\w|\d)*/))
+           @rex_tokens.push action { [:NAME, text] }
 
         when (text = ss.scan(/\w+/))
-           @rex_tokens.push action { [:word, text] }
+           @rex_tokens.push action { [:WORD, text] }
 
         when (text = ss.scan(/\n/))
           ;
 
         when (text = ss.scan(/./))
-           @rex_tokens.push action { [text, text] }
+           @rex_tokens.push action { [:TEXT, text] }
 
         else
           text = ss.string[ss.pos .. -1]
