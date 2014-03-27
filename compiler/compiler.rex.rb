@@ -5,7 +5,7 @@
 #++
 
 require 'racc/parser'
-class CompilerScanner < Racc::Parser
+class CompilerLanguage < Racc::Parser
   require 'strscan'
 
   class ScanError < StandardError ; end
@@ -57,6 +57,15 @@ class CompilerScanner < Racc::Parser
 
         when (text = ss.scan(/\d+/))
            @rex_tokens.push action { [:digit, text.to_i] }
+
+        when (text = ss.scan(/const/))
+           @rex_tokens.push action { [:const, text] }
+
+        when (text = ss.scan(/int/))
+           @rex_tokens.push action { [:int, text] }
+
+        when (text = ss.scan(/,/))
+           @rex_tokens.push action { [:comma, text] }
 
         when (text = ss.scan(/\w+/))
            @rex_tokens.push action { [:word, text] }

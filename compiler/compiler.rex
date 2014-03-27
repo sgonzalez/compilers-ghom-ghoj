@@ -4,14 +4,15 @@ macro
 
 rule
   BLANK         # no action
-  \d+           { [:digit, text.to_i] }
-  const		{ [:const, text] }
-  int		{ [:int, text] }
-  ,		{ [:comma, text] }
-  
-  \w+           { [:word, text] }
+  //
+  \d+           { [:NUMBER, text.to_i] }
+  const		{ [:CONST, text] }
+  int		{ [:INT, text] }
+  ,		{ [:COMMA, text] }
+  ;		{ [:SEMICOLON, text] }  
+  \w+           { [:WORD, text] }
   \n
-  .             { [text, text] }
+  .             { [:TEXT, text] }
   
 inner
   def tokenize(code)
