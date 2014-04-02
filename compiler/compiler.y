@@ -1,9 +1,9 @@
 class CompilerLanguage
 rule
-  start: stmts
-  stmts: stmt stmts
+  start: stmts  #{ return ast }
+  stmts: stmt stmts #{ stmt.adopt_children(stmts) }
        | ''
-  stmt: decl SEMICOLON
+  stmt: decl SEMICOLON #{ decl }
       | NAME EQUALS expr SEMICOLON
       | RETURN NAME SEMICOLON
       | ifblock

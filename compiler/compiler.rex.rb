@@ -51,7 +51,6 @@ class CompilerLanguage < Racc::Parser
     token
   end
 
-<<<<<<< HEAD
   def _next_token
     text = @ss.peek(1)
     @lineno  +=  1  if text == "\n"
@@ -61,119 +60,89 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/BLANK/))
         ;
 
+      when (text = @ss.scan(///.*/))
+        ;
+
       when (text = @ss.scan(/\d+/))
-         action { [:digit, text.to_i] }
+         action { [:NUMBER, text.to_i] }
+
+      when (text = @ss.scan(/return/))
+         action { [:RETURN, text] }
+
+      when (text = @ss.scan(/<</))
+         action { [:LEFT_BIT_SHIFT, text] }
+
+      when (text = @ss.scan(/>>/))
+         action { [:RIGHT_BIT_SHIFT, text] }
+
+      when (text = @ss.scan(/-/))
+         action { [:MINUS, text] }
+
+      when (text = @ss.scan(/+/))
+         action { [:PLUS, text] }
+
+      when (text = @ss.scan(/\*/))
+         action { [:MULTIPLY, text] }
+
+      when (text = @ss.scan(///))
+         action { [:DIVIDE, text] }
+
+      when (text = @ss.scan(/\!=/))
+         action { [:NOT_EQUALS, text] }
+
+      when (text = @ss.scan(/==/))
+         action { [:EQUALS_EQUALS, text] }
+
+      when (text = @ss.scan(/<=/))
+         action { [:LESS_EQUALS, text] }
+
+      when (text = @ss.scan(/>=/))
+         action { [:GREATER_EQUALS, text] }
+
+      when (text = @ss.scan(/\(/))
+         action { [:OPEN_PAREN, text] }
+
+      when (text = @ss.scan(/\)/))
+         action { [:CLOSE_PAREN, text] }
+
+      when (text = @ss.scan(/\{/))
+         action { [:OPEN_CURLY, text] }
+
+      when (text = @ss.scan(/\}/))
+         action { [:CLOSE_CURLY, text] }
+
+      when (text = @ss.scan(/>/))
+         action { [:GREATER, text] }
+
+      when (text = @ss.scan(/</))
+         action { [:LESS, text] }
+
+      when (text = @ss.scan(/=/))
+         action { [:EQUALS, text] }
 
       when (text = @ss.scan(/const/))
-         action { [:const, text] }
+         action { [:CONST, text] }
 
       when (text = @ss.scan(/int/))
-         action { [:int, text] }
+         action { [:INT, text] }
 
       when (text = @ss.scan(/,/))
-         action { [:comma, text] }
+         action { [:COMMA, text] }
+
+      when (text = @ss.scan(/;/))
+         action { [:SEMICOLON, text] }
+
+      when (text = @ss.scan(/\w(\w|\d)*/))
+         action { [:NAME, text] }
 
       when (text = @ss.scan(/\w+/))
-         action { [:word, text] }
+         action { [:WORD, text] }
 
       when (text = @ss.scan(/\n/))
         ;
 
       when (text = @ss.scan(/./))
-         action { [text, text] }
-=======
-  def scan_evaluate( str )
-    scan_setup
-    @rex_tokens = []
-    @lineno  =  1
-    ss = StringScanner.new(str)
-    state = nil
-    until ss.eos?
-      text = ss.peek(1)
-      @lineno  +=  1  if text == "\n"
-      case state
-      when nil
-        case
-        when (text = ss.scan(/BLANK/))
-          ;
-
-        when (text = ss.scan(/\d+/))
-           @rex_tokens.push action { [:NUMBER, text.to_i] }
-
-        when (text = ss.scan(/return/))
-           @rex_tokens.push action { [:RETURN, text] }
-
-        when (text = ss.scan(/<</))
-           @rex_tokens.push action { [:BIT_SHIFT, text] }
-
-        when (text = ss.scan(/-/))
-           @rex_tokens.push action { [:MINUS, text] }
-
-        when (text = ss.scan(/+/))
-           @rex_tokens.push action { [:PLUS, text] }
-
-        when (text = ss.scan(/\*/))
-           @rex_tokens.push action { [:MULTIPLY, text] }
-
-        when (text = ss.scan(///))
-           @rex_tokens.push action { [:FOR_SLASH, text] }
-
-        when (text = ss.scan(/\!=/))
-           @rex_tokens.push action { [:NOT_EQUALS, text] }
-
-        when (text = ss.scan(/==/))
-           @rex_tokens.push action { [:EQUALS_EQUALS, text] }
-
-        when (text = ss.scan(/<=/))
-           @rex_tokens.push action { [:LESS_EQUALS, text] }
-
-        when (text = ss.scan(/>=/))
-           @rex_tokens.push action { [:GREATER_EQUALS, text] }
-
-        when (text = ss.scan(/\(/))
-           @rex_tokens.push action { [:OPEN_PAREN, text] }
-
-        when (text = ss.scan(/\)/))
-           @rex_tokens.push action { [:CLOSE_PAREN, text] }
-
-        when (text = ss.scan(/\{/))
-           @rex_tokens.push action { [:OPEN_CURLY, text] }
-
-        when (text = ss.scan(/\}/))
-           @rex_tokens.push action { [:CLOSE_CURLY, text] }
-
-        when (text = ss.scan(/=/))
-           @rex_tokens.push action { [:EQUALS, text] }
-
-        when (text = ss.scan(/const/))
-           @rex_tokens.push action { [:CONST, text] }
-
-        when (text = ss.scan(/int/))
-           @rex_tokens.push action { [:INT, text] }
-
-        when (text = ss.scan(/,/))
-           @rex_tokens.push action { [:COMMA, text] }
-
-        when (text = ss.scan(/;/))
-           @rex_tokens.push action { [:SEMICOLON, text] }
-
-        when (text = ss.scan(/\w(\w|\d)*/))
-           @rex_tokens.push action { [:NAME, text] }
-
-        when (text = ss.scan(/\w+/))
-           @rex_tokens.push action { [:WORD, text] }
-
-        when (text = ss.scan(/\n/))
-          ;
-
-        when (text = ss.scan(/./))
-           @rex_tokens.push action { [:TEXT, text] }
-
-        else
-          text = ss.string[ss.pos .. -1]
-          raise  ScanError, "can not match: '" + text + "'"
-        end  # if
->>>>>>> 2fef61298a6b02bdfda2962d6ac65ea112843b29
+         action { [:TEXT, text] }
 
       else
         text = @ss.string[@ss.pos .. -1]
