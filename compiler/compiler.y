@@ -44,7 +44,32 @@ end
 		str = 'parse error on '
 		str << token_name << ' ' unless token_name == token
 		str << token
-		@tokens.error(str)
 	end
-	
----- footer
+
+
+---- footer ----
+
+		parser = CompilerLanguage.new
+		count = 0
+		scnt  = 0
+
+		puts
+		puts 'type "Q" to quit.'
+		puts
+
+		while true do
+			puts
+			print '? '
+			str = gets.chop!
+			break if /q/i === str
+			begin
+				val = parser.parse( str )
+				print '= ', val, "\n"
+			rescue ParseError
+				puts $!
+			rescue
+				puts 'unexpected error ?!'
+				raise
+		end
+																			
+	end	
