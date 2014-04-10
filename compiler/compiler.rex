@@ -6,10 +6,10 @@ macro
   RETURNBLOCK		return
   LEFTBITSHIFT		<<
   RIGHTBITSHIFT		>>
-  MINUS			-
-  PLUS			+
+  MINUS			\-
+  PLUS			\+
   MULTIPLY		\*
-  DIVIDE		/
+  DIVIDE		\/
   NOTEQUAL		\!=
   EQUALEQUAL		==
   LESSEQUAL		<=
