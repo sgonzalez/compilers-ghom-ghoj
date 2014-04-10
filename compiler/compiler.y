@@ -21,8 +21,11 @@ rule
   infix: NOT_EQUALS | EQUALS_EQUALS | LESS_EQUALS | GREATER_EQUALS | GREATER | LESS | PLUS | MINUS | MULTIPLY | DIVIDE | RIGHT_BIT_SHIFT | LEFT_BIT_SHIFT
   expr: NAME
       | NUMBER
-      | expr infix expr
+      | subexpr infix expr
       | OPEN_PAREN expr CLOSE_PAREN
+  subexpr: NAME
+         | NUMBER
+         | OPEN_PAREN expr CLOSE_PAREN
 end
 
 ---- header
