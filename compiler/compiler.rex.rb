@@ -75,16 +75,16 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/>>/))
          action { [:RIGHT_BIT_SHIFT, text] }
 
-      when (text = @ss.scan(/-/))
+      when (text = @ss.scan(/\-/))
          action { [:MINUS, text] }
 
-      when (text = @ss.scan(/+/))
+      when (text = @ss.scan(/\+/))
          action { [:PLUS, text] }
 
       when (text = @ss.scan(/\*/))
          action { [:MULTIPLY, text] }
 
-      when (text = @ss.scan(///))
+      when (text = @ss.scan(/\//))
          action { [:DIVIDE, text] }
 
       when (text = @ss.scan(/\!=/))

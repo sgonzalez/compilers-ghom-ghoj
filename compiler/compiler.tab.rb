@@ -14,6 +14,18 @@ module_eval(<<'...end compiler.y/module_eval...', 'compiler.y', 35)
   def parse(input)
     scan_str(input)
   end
+  
+  def on_error(error_token_id, error_value, value_stack)
+		token_name = token_to_str(error_token_id)
+		token_name.downcase!
+		token = error_value.to_s.inspect
+
+		str = 'parse error on '
+		str << token_name << ' ' unless token_name == token
+		str << token
+		@tokens.error(str)
+	end
+	
 ...end compiler.y/module_eval...
 ##### State transition tables begin ###
 
@@ -308,3 +320,5 @@ def _reduce_none(val, _values, result)
 end
 
 end   # class CompilerLanguage
+
+
