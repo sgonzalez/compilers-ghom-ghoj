@@ -1,7 +1,7 @@
 class CompilerLanguage
 macro
   BLANK			[\ \t]+
-  SINGLELINE		//.*
+  SINGLELINE		\/\/.*
   NUMBER		\d+
   RETURNBLOCK		return
   LEFTBITSHIFT		<<
