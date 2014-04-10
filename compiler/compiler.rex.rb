@@ -60,7 +60,7 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/[ \t]+/))
         ;
 
-      when (text = @ss.scan(///.*/))
+      when (text = @ss.scan(/\/\/.*/))
         ;
 
       when (text = @ss.scan(/\d+/))
