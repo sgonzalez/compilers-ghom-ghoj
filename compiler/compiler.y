@@ -44,6 +44,9 @@ end
 		str = 'parse error on '
 		str << token_name << ' ' unless token_name == token
 		str << token
+		#do things with the error here.
+		#raise
+
 	end
 
 
@@ -67,6 +70,7 @@ end
 			begin
 				val = parser.parse( str )
 				# print '= ', val, "\n"
+				puts val
 			rescue ParseError
 				puts $!
 			rescue
