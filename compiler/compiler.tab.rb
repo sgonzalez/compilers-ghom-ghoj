@@ -18,18 +18,18 @@ module_eval(<<'...end compiler.y/module_eval...', 'compiler.y', 37)
     scan_str(input)
   end
 
-  def on_error(error_token_id, error_value, value_stack)
-		token_name = token_to_str(error_token_id)
-		token_name.downcase!
-		token = error_value.to_s.inspect
+#  def on_error(error_token_id, error_value, value_stack)
+#		token_name = token_to_str(error_token_id)
+#		token_name.downcase!
+#		token = error_value.to_s.inspect
 
-		str = 'parse error on '
-		str << token_name << ' ' unless token_name == token
-		str << token
+#		str = 'parse error on '
+#		str << token_name << ' ' unless token_name == token
+#		str << token
 		#do things with the error here.
 		#raise
 
-	end
+#	end
 
 
 ...end compiler.y/module_eval...
@@ -352,18 +352,6 @@ end   # class CompilerLanguage
       break if !instr
       string_to_parse << instr
 			#break if !str# == ?\C-d#/q/i === str
-<<<<<<< HEAD
-=======
-			begin
-				val = parser.parse( str )
-				# print '= ', val, "\n"
-				puts val
-			rescue ParseError
-				puts $!
-			rescue
-				puts 'unexpected error ?!'
-				raise
->>>>>>> 84c8104349b3c84505f0af94e2c2f460c1ee6169
 		end
 
     begin
