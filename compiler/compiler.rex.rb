@@ -58,10 +58,10 @@ class CompilerLanguage < Racc::Parser
     when nil
       case
       when (text = @ss.scan(/[ \t]+/))
-        ;
+         action { [false, false]} #no action
 
       when (text = @ss.scan(/\/\/.*/))
-        ;
+         action { [false, false]} # no action
 
       when (text = @ss.scan(/\d+/))
          action { [:NUMBER, text.to_i] }
@@ -139,7 +139,7 @@ class CompilerLanguage < Racc::Parser
          action { [:WORD, text] }
 
       when (text = @ss.scan(/\n/))
-        ;
+         action { [false, false]} # no action
 
       when (text = @ss.scan(/./))
          action { [:TEXT, text] }

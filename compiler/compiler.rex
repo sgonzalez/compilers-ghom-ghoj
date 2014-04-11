@@ -31,8 +31,8 @@ macro
   TEXT			.
 
 rule
-  {BLANK}		# no action
-  {SINGLELINE}		# no action
+  {BLANK}		{ [false, false]} #no action
+  {SINGLELINE}		{ [false, false]} # no action
   {NUMBER}		{ [:NUMBER, text.to_i] }
   {RETURNBLOCK}		{ [:RETURN, text] }
   {LEFTBITSHIFT}	{ [:LEFT_BIT_SHIFT, text] }
@@ -58,7 +58,7 @@ rule
   {SEMICOLON}		{ [:SEMICOLON, text] }
   {NAME}		{ [:NAME, text] }
   {WORD}		{ [:WORD, text] }
-  {NEWLINE}		# no action
+  {NEWLINE}		{ [false, false]} # no action
   {TEXT}		{ [:TEXT, text] }
 
 inner
