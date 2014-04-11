@@ -30,12 +30,12 @@ end
 
 ---- header
   require './compiler.rex.rb'
- 
+
 ---- inner
   def parse(input)
     scan_str(input)
   end
-  
+
   def on_error(error_token_id, error_value, value_stack)
 		token_name = token_to_str(error_token_id)
 		token_name.downcase!
@@ -54,14 +54,16 @@ end
 		scnt  = 0
 
 		puts
-		puts 'type "Q" to quit.'
+		puts 'type "ctrl-d" to quit.'
 		puts
 
 		while true do
 			puts
-			print '? '
-			str = gets.chop!
-			break if /q/i === str
+			print '> '
+      instr = gets
+      break if !instr
+			str = instr.chomp!
+			#break if !str# == ?\C-d#/q/i === str
 			begin
 				val = parser.parse( str )
 				print '= ', val, "\n"
@@ -71,5 +73,5 @@ end
 				puts 'unexpected error ?!'
 				raise
 		end
-																			
-	end	
+
+	end
