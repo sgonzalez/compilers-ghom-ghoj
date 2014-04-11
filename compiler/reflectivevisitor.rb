@@ -1,7 +1,7 @@
 class AbstractNode
   attr_accessor :node_type, :leftmost_child, :leftmost_sibling, :right_sibling, :parent, :is_visited
 
-  def initialize(node_type, leftmost_child=nil, leftmost_sibling=nil, right_sibling=nil, parent=nil)
+  def initialize(node_type=nil, leftmost_child=nil, leftmost_sibling=nil, right_sibling=nil, parent=nil)
     @node_type = node_type  # a symbol
     @leftmost_child = leftmost_child
     @leftmost_sibling = leftmost_sibling
@@ -71,14 +71,17 @@ class AbstractNode
     self
   end
 
-  def make_family(op, *children)
+  def self.make_family(parent, *children)
     child_head = children[0]
     children.each do |child|
       if child != child_head
         child_head.make_siblings(child)
       end
     end
-    return AbstractNode.new(op).adopt_children(child_head)
+    node = AbstractNode.new
+    node.parent = parent
+    node.adopt_children(child_head)
+    node
   end
 
 end
