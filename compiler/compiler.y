@@ -1,7 +1,7 @@
 class CompilerLanguage
 rule
-  start: stmts  #{ return ast }
-  stmts: stmt stmts #{ stmt.adopt_children(stmts) }
+  start: stmts  { return $ast }
+  stmts: stmt stmts { stmt.adopt_children(stmts) }
        | ''
   stmt: decl SEMICOLON #{ decl }
       | NAME EQUALS expr SEMICOLON
@@ -30,8 +30,11 @@ end
 
 ---- header
   require './compiler.rex.rb'
+  require './reflectivevisitor.rb'
 
+  $ast = AbstractNode.new(:root)
 ---- inner
+
   def parse(input)
     scan_str(input)
   end
@@ -53,25 +56,26 @@ end
 		count = 0
 		scnt  = 0
 
-		puts
 		puts 'type "ctrl-d" to quit.'
-		puts
 
+    string_to_parse = ""
 		while true do
 			# puts
 			# print '> '
       instr = gets
       break if !instr
-			str = instr.chomp!
+      string_to_parse << instr
 			#break if !str# == ?\C-d#/q/i === str
-			begin
-				val = parser.parse( str )
-				# print '= ', val, "\n"
-			rescue ParseError
-				puts $!
-			rescue
-				puts 'unexpected error ?!'
-				raise
 		end
+
+    begin
+      val = parser.parse( string_to_parse )
+      p $ast
+      # print '= ', val, "\n"
+    rescue ParseError
+      puts $!
+    rescue
+      puts 'unexpected error ?!'
+      raise
 
 	end

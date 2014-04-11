@@ -7,10 +7,13 @@
 require 'racc/parser.rb'
 
   require './compiler.rex.rb'
+  require './reflectivevisitor.rb'
 
+  $ast = AbstractNode.new(:root)
 class CompilerLanguage < Racc::Parser
 
-module_eval(<<'...end compiler.y/module_eval...', 'compiler.y', 35)
+module_eval(<<'...end compiler.y/module_eval...', 'compiler.y', 37)
+
   def parse(input)
     scan_str(input)
   end
@@ -97,8 +100,8 @@ racc_goto_default = [
 
 racc_reduce_table = [
   0, 0, :racc_error,
-  1, 30, :_reduce_none,
-  2, 31, :_reduce_none,
+  1, 30, :_reduce_1,
+  2, 31, :_reduce_2,
   1, 31, :_reduce_none,
   2, 32, :_reduce_none,
   4, 32, :_reduce_none,
@@ -241,9 +244,19 @@ Racc_debug_parser = false
 
 # reduce 0 omitted
 
-# reduce 1 omitted
+module_eval(<<'.,.,', 'compiler.y', 2)
+  def _reduce_1(val, _values, result)
+     return $ast 
+    result
+  end
+.,.,
 
-# reduce 2 omitted
+module_eval(<<'.,.,', 'compiler.y', 3)
+  def _reduce_2(val, _values, result)
+     stmt.adopt_children(stmts) 
+    result
+  end
+.,.,
 
 # reduce 3 omitted
 
@@ -326,25 +339,26 @@ end   # class CompilerLanguage
 		count = 0
 		scnt  = 0
 
-		puts
 		puts 'type "ctrl-d" to quit.'
-		puts
 
+    string_to_parse = ""
 		while true do
 			# puts
 			# print '> '
       instr = gets
       break if !instr
-			str = instr.chomp!
+      string_to_parse << instr
 			#break if !str# == ?\C-d#/q/i === str
-			begin
-				val = parser.parse( str )
-				# print '= ', val, "\n"
-			rescue ParseError
-				puts $!
-			rescue
-				puts 'unexpected error ?!'
-				raise
 		end
+
+    begin
+      val = parser.parse( string_to_parse )
+      p $ast
+      # print '= ', val, "\n"
+    rescue ParseError
+      puts $!
+    rescue
+      puts 'unexpected error ?!'
+      raise
 
 	end
