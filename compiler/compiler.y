@@ -69,18 +69,6 @@ end
       break if !instr
       string_to_parse << instr
 			#break if !str# == ?\C-d#/q/i === str
-<<<<<<< HEAD
-=======
-			begin
-				val = parser.parse( str )
-				# print '= ', val, "\n"
-				puts val
-			rescue ParseError
-				puts $!
-			rescue
-				puts 'unexpected error ?!'
-				raise
->>>>>>> 84c8104349b3c84505f0af94e2c2f460c1ee6169
 		end
 
     begin
