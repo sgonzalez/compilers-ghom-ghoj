@@ -1,7 +1,13 @@
-this is a fancy test
+// language example 0
+const int a = 1;
+int x = 1<<a;
+int y, z = 3;
 
-blah blah
+y = z - x;
+if ( y <= 0 ) {
+   z = (x+2) + z*z ;
+} else {
+   z = z / y;
+}
 
-blah
-blah
-Q
+return z;

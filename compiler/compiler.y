@@ -58,15 +58,15 @@ end
 		puts
 
 		while true do
-			puts
-			print '> '
+			# puts
+			# print '> '
       instr = gets
       break if !instr
 			str = instr.chomp!
 			#break if !str# == ?\C-d#/q/i === str
 			begin
 				val = parser.parse( str )
-				print '= ', val, "\n"
+				# print '= ', val, "\n"
 			rescue ParseError
 				puts $!
 			rescue
