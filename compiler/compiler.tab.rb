@@ -112,7 +112,7 @@ racc_reduce_table = [
   1, 32, :_reduce_none,
   5, 33, :_reduce_none,
   3, 33, :_reduce_none,
-  1, 36, :_reduce_none,
+  1, 36, :_reduce_10,
   1, 36, :_reduce_none,
   3, 35, :_reduce_none,
   7, 38, :_reduce_none,
@@ -256,7 +256,7 @@ module_eval(<<'.,.,', 'compiler.y', 2)
 
 module_eval(<<'.,.,', 'compiler.y', 3)
   def _reduce_2(val, _values, result)
-     AbstractNode.make_family($ast, stmt) 
+     AbstractNode.make_family($ast, AbstractNode.new(:stmt)) 
     result
   end
 .,.,
@@ -275,7 +275,12 @@ module_eval(<<'.,.,', 'compiler.y', 3)
 
 # reduce 9 omitted
 
-# reduce 10 omitted
+module_eval(<<'.,.,', 'compiler.y', 11)
+  def _reduce_10(val, _values, result)
+     p AbstractNode.new(:const) 
+    result
+  end
+.,.,
 
 # reduce 11 omitted
 

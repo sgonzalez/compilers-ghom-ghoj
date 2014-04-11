@@ -1,7 +1,7 @@
 class CompilerLanguage
 rule
   start: stmts  { return $ast }
-  stmts: stmt stmts { AbstractNode.make_family($ast, stmt) }
+  stmts: stmt stmts { AbstractNode.make_family($ast, AbstractNode.new(:stmt)) }
        | ''
   stmt: decl SEMICOLON #{ decl }
       | NAME EQUALS expr SEMICOLON
@@ -9,7 +9,7 @@ rule
       | ifblock
   decl: modifier type NAME EQUALS EXPR
       | modifier type NAME
-  modifier: CONST
+  modifier: CONST { AbstractNode.new(:const) }
           | ''
   ifblock: if elsif else
   if: IF OPEN_PAREN expr CLOSE_PAREN OPEN_CURLY stmts CLOSE_CURLY
