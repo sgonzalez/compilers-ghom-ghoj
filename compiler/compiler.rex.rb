@@ -64,85 +64,85 @@ class CompilerLanguage < Racc::Parser
         ;
 
       when (text = @ss.scan(/\d+/))
-         action { p [:NUMBER, text.to_i] }
+         action { [:NUMBER, text.to_i] }
 
       when (text = @ss.scan(/return/))
-         action { p [:RETURN, text] }
+         action { [:RETURN, text] }
 
       when (text = @ss.scan(/<</))
-         action { p [:LEFT_BIT_SHIFT, text] }
+         action { [:LEFT_BIT_SHIFT, text] }
 
       when (text = @ss.scan(/>>/))
-         action { p [:RIGHT_BIT_SHIFT, text] }
+         action { [:RIGHT_BIT_SHIFT, text] }
 
       when (text = @ss.scan(/\-/))
-         action { p [:MINUS, text] }
+         action { [:MINUS, text] }
 
       when (text = @ss.scan(/\+/))
-         action { p [:PLUS, text] }
+         action { [:PLUS, text] }
 
       when (text = @ss.scan(/\*/))
-         action { p [:MULTIPLY, text] }
+         action { [:MULTIPLY, text] }
 
       when (text = @ss.scan(/\//))
-         action { p [:DIVIDE, text] }
+         action { [:DIVIDE, text] }
 
       when (text = @ss.scan(/\!=/))
-         action { p [:NOT_EQUALS, text] }
+         action { [:NOT_EQUALS, text] }
 
       when (text = @ss.scan(/==/))
-         action { p [:EQUALS_EQUALS, text] }
+         action { [:EQUALS_EQUALS, text] }
 
       when (text = @ss.scan(/<=/))
-         action { p [:LESS_EQUALS, text] }
+         action { [:LESS_EQUALS, text] }
 
       when (text = @ss.scan(/>=/))
-         action { p [:GREATER_EQUALS, text] }
+         action { [:GREATER_EQUALS, text] }
 
       when (text = @ss.scan(/\(/))
-         action { p [:OPEN_PAREN, text] }
+         action { [:OPEN_PAREN, text] }
 
       when (text = @ss.scan(/\)/))
-         action { p [:CLOSE_PAREN, text] }
+         action { [:CLOSE_PAREN, text] }
 
       when (text = @ss.scan(/\{/))
-         action { p [:OPEN_CURLY, text] }
+         action { [:OPEN_CURLY, text] }
 
       when (text = @ss.scan(/\}/))
-         action { p [:CLOSE_CURLY, text] }
+         action { [:CLOSE_CURLY, text] }
 
       when (text = @ss.scan(/>/))
-         action { p [:GREATER, text] }
+         action { [:GREATER, text] }
 
       when (text = @ss.scan(/</))
-         action { p [:LESS, text] }
+         action { [:LESS, text] }
 
       when (text = @ss.scan(/=/))
-         action { p [:EQUALS, text] }
+         action { [:EQUALS, text] }
 
       when (text = @ss.scan(/const/))
-         action { p [:CONST, text] }
+         action { [:CONST, text] }
 
       when (text = @ss.scan(/int/))
-         action { p [:INT, text] }
+         action { [:INT, text] }
 
       when (text = @ss.scan(/,/))
-         action { p [:COMMA, text] }
+         action { [:COMMA, text] }
 
       when (text = @ss.scan(/;/))
-         action { p [:SEMICOLON, text] }
+         action { [:SEMICOLON, text] }
 
       when (text = @ss.scan(/\w(\w|\d)*/))
-         action { p [:NAME, text] }
+         action { [:NAME, text] }
 
       when (text = @ss.scan(/\w+/))
-         action { p [:WORD, text] }
+         action { [:WORD, text] }
 
       when (text = @ss.scan(/\n/))
         ;
 
       when (text = @ss.scan(/./))
-         action { p [:TEXT, text] }
+         action { [:TEXT, text] }
 
       else
         text = @ss.string[@ss.pos .. -1]
