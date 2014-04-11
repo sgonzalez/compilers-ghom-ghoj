@@ -1,7 +1,7 @@
 class CompilerLanguage
 rule
   start: stmts  { return $ast }
-  stmts: stmt stmts { stmt.adopt_children(stmts) }
+  stmts: stmt stmts { AbstractNode.make_family($ast, stmt) }
        | ''
   stmt: decl SEMICOLON #{ decl }
       | NAME EQUALS expr SEMICOLON

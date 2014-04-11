@@ -256,7 +256,7 @@ module_eval(<<'.,.,', 'compiler.y', 2)
 
 module_eval(<<'.,.,', 'compiler.y', 3)
   def _reduce_2(val, _values, result)
-     stmt.adopt_children(stmts) 
+     AbstractNode.make_family($ast, stmt) 
     result
   end
 .,.,
@@ -352,18 +352,6 @@ end   # class CompilerLanguage
       break if !instr
       string_to_parse << instr
 			#break if !str# == ?\C-d#/q/i === str
-<<<<<<< HEAD
-=======
-			begin
-				val = parser.parse( str )
-				# print '= ', val, "\n"
-				puts val
-			rescue ParseError
-				puts $!
-			rescue
-				puts 'unexpected error ?!'
-				raise
->>>>>>> 84c8104349b3c84505f0af94e2c2f460c1ee6169
 		end
 
     begin
