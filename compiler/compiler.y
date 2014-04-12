@@ -15,7 +15,7 @@ rule
   if: IF OPEN_PAREN expr CLOSE_PAREN OPEN_CURLY stmts CLOSE_CURLY
   elsif: ELSE if elsif
        | ''
-  else: ELSE OPEN_PAREN expr CLOSE_PAREN OPEN_CURLY stmts CLOSE_CURLY
+  else: ELSE OPEN_CURLY stmts CLOSE_CURLY
       | ''
   type: INT
   infix: NOT_EQUALS | EQUALS_EQUALS | LESS_EQUALS | GREATER_EQUALS | GREATER | LESS | PLUS | MINUS | MULTIPLY | DIVIDE | RIGHT_BIT_SHIFT | LEFT_BIT_SHIFT
@@ -55,21 +55,21 @@ end
 
 ---- footer ----
 
-		parser = CompilerLanguage.new
-		count = 0
-		scnt  = 0
+	parser = CompilerLanguage.new
+	count = 0
+	scnt  = 0
 
-		puts 'type "ctrl-d" to quit.'
+	puts 'type "ctrl-d" to quit.'
 
     string_to_parse = ""
-		while true do
-			# puts
-			# print '> '
-      instr = gets
-      break if !instr
-      string_to_parse << instr
-			#break if !str# == ?\C-d#/q/i === str
-		end
+	while true do
+		# puts
+		# print '> '
+    instr = gets
+    break if !instr
+    string_to_parse << instr
+		#break if !str# == ?\C-d#/q/i === str
+	end
 
     begin
       val = parser.parse( string_to_parse )
