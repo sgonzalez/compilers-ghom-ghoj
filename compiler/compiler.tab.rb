@@ -36,62 +36,60 @@ module_eval(<<'...end compiler.y/module_eval...', 'compiler.y', 37)
 ##### State transition tables begin ###
 
 racc_action_table = [
-    26,    26,    26,    26,    26,    34,    29,    29,    29,    29,
-    29,    22,   -31,   -34,   -32,    55,    37,    33,    22,    19,
-   -31,   -34,   -32,    21,    27,    27,    27,    27,    27,    30,
-    21,    38,    39,    40,    41,    42,    43,    44,    45,    46,
-    47,    48,    49,     4,    17,     6,    16,     7,    52,    10,
-    12,     4,    53,     6,    15,     7,    23,    10,    12,     4,
-   -11,     6,    57,     7,    58,    10,    12,     4,    31,     6,
-    60,     7,    13,    10,    12,    61,    12,    63,    64,    24,
-    66 ]
+    26,    26,    26,    26,    22,    22,    29,    29,    29,    29,
+    34,   -34,   -31,   -32,    37,    31,    21,    21,    12,   -34,
+   -31,   -32,    33,    30,    27,    27,    27,    27,    38,    39,
+    40,    41,    42,    43,    44,    45,    46,    47,    48,    49,
+     4,    24,     6,    23,     7,    19,    10,    12,     4,    52,
+     6,    53,     7,    17,    10,    12,     4,    55,     6,    16,
+     7,    57,    10,    12,     4,    58,     6,    15,     7,    60,
+    10,    12,   -11,    61,    13,    63 ]
 
 racc_action_check = [
-    16,    29,    53,    50,    23,    20,    16,    29,    53,    50,
-    23,    11,    26,    57,    27,    36,    25,    20,    35,     9,
-    26,    57,    27,    11,    16,    29,    53,    50,    23,    17,
-    35,    28,    28,    28,    28,    28,    28,    28,    28,    28,
-    28,    28,    28,     0,     7,     0,     6,     0,    31,     0,
-     0,     3,    33,     3,     5,     3,    12,     3,     3,    63,
-     4,    63,    51,    63,    52,    63,    63,    60,    18,    60,
-    55,    60,     1,    60,    60,    59,    21,    61,    62,    13,
-    65 ]
+    29,    23,    16,    50,    35,    11,    29,    23,    16,    50,
+    20,    57,    26,    27,    25,    18,    35,    11,    21,    57,
+    26,    27,    20,    17,    29,    23,    16,    50,    28,    28,
+    28,    28,    28,    28,    28,    28,    28,    28,    28,    28,
+     3,    13,     3,    12,     3,     9,     3,     3,    53,    31,
+    53,    33,    53,     7,    53,    53,    60,    36,    60,     6,
+    60,    51,    60,    60,     0,    52,     0,     5,     0,    55,
+     0,     0,     4,    59,     1,    62 ]
 
 racc_action_pointer = [
-    41,    72,   nil,    49,    45,    51,    41,    40,   nil,     4,
-   nil,     9,    46,    79,   nil,   nil,    -4,    26,    64,   nil,
-     3,    67,   nil,     0,   nil,    13,     9,    11,    15,    -3,
-   nil,    43,   nil,    42,   nil,    16,     4,   nil,   nil,   nil,
+    62,    74,   nil,    38,    57,    64,    54,    49,   nil,    30,
+   nil,     3,    33,    41,   nil,   nil,    -2,    20,    11,   nil,
+     8,     9,   nil,    -3,   nil,    11,     9,    10,    12,    -4,
+   nil,    44,   nil,    39,   nil,     2,    46,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-    -1,    51,    57,    -2,   nil,    58,   nil,    10,   nil,    64,
-    65,    65,    65,    57,   nil,    67,   nil ]
+    -1,    50,    58,    46,   nil,    57,   nil,     8,   nil,    60,
+    54,   nil,    62,   nil ]
 
 racc_action_default = [
    -38,   -38,    -1,   -38,    -3,   -38,   -38,   -38,    -7,   -38,
    -10,   -38,   -38,   -38,    -2,    -4,   -38,   -38,   -38,   -18,
-   -38,   -38,   -15,   -38,    67,   -38,   -35,   -36,   -38,   -38,
+   -38,   -38,   -15,   -38,    64,   -38,   -35,   -36,   -38,   -38,
     -6,    -9,   -12,   -38,   -17,   -38,   -38,    -5,   -19,   -20,
    -21,   -22,   -23,   -24,   -25,   -26,   -27,   -28,   -29,   -30,
    -38,   -38,   -38,   -38,   -14,   -38,   -33,   -37,    -8,   -38,
-   -38,   -38,   -38,   -38,   -13,   -38,   -16 ]
+   -38,   -16,   -38,   -13 ]
 
 racc_goto_table = [
      2,    25,    20,    14,    35,    18,     1,    32,    36,    50,
    nil,   nil,   nil,   nil,    51,   nil,   nil,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,    54,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,   nil,    56,   nil,   nil,    59,   nil,
+   nil,   nil,   nil,   nil,   nil,    56,   nil,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-    62,   nil,   nil,    65 ]
+   nil,   nil,   nil,    59,   nil,   nil,   nil,   nil,   nil,   nil,
+    62 ]
 
 racc_goto_check = [
      2,     5,    10,     2,     9,     8,     1,    11,     5,    12,
    nil,   nil,   nil,   nil,     5,   nil,   nil,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,    10,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,   nil,     5,   nil,   nil,     5,   nil,
+   nil,   nil,   nil,   nil,   nil,     5,   nil,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-     2,   nil,   nil,     2 ]
+   nil,   nil,   nil,     2,   nil,   nil,   nil,   nil,   nil,   nil,
+     2 ]
 
 racc_goto_pointer = [
    nil,     6,     0,   nil,   nil,   -15,   nil,   nil,    -4,   -17,
@@ -118,7 +116,7 @@ racc_reduce_table = [
   7, 38, :_reduce_none,
   3, 39, :_reduce_none,
   1, 39, :_reduce_none,
-  7, 40, :_reduce_none,
+  4, 40, :_reduce_none,
   1, 40, :_reduce_none,
   1, 37, :_reduce_none,
   1, 41, :_reduce_none,
@@ -143,7 +141,7 @@ racc_reduce_table = [
 
 racc_reduce_n = 38
 
-racc_shift_n = 67
+racc_shift_n = 64
 
 racc_token_table = {
   false => 0,
@@ -256,7 +254,7 @@ module_eval(<<'.,.,', 'compiler.y', 2)
 
 module_eval(<<'.,.,', 'compiler.y', 3)
   def _reduce_2(val, _values, result)
-     AbstractNode.make_family($ast, AbstractNode.new(:stmt)) 
+     print "hi" 
     result
   end
 .,.,
@@ -277,7 +275,7 @@ module_eval(<<'.,.,', 'compiler.y', 3)
 
 module_eval(<<'.,.,', 'compiler.y', 11)
   def _reduce_10(val, _values, result)
-     p AbstractNode.new(:const) 
+     AbstractNode.new(:const) 
     result
   end
 .,.,
@@ -362,7 +360,7 @@ end   # class CompilerLanguage
     begin
       val = parser.parse( string_to_parse )
       p $ast
-      # print '= ', val, "\n"
+      print '= ', val, "\n"
     rescue ParseError
       puts $!
     rescue
