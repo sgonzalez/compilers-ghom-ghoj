@@ -15,37 +15,33 @@ class CompilerLanguage < Racc::Parser
 
 module_eval(<<'...end new_compiler.y/module_eval...', 'new_compiler.y', 37)
 
-	def parse(input)
-		scan_str(input)
-	end
-
 ...end new_compiler.y/module_eval...
 ##### State transition tables begin ###
 
 racc_action_table = [
-     9,    30,     8,   -12,    10,   -18,    12,     9,    13,     8,
-   -12,    10,    20,    12,     9,    13,     8,   -12,    10,    27,
-    12,     9,    13,     8,   -12,    10,    22,    12,    24,    13,
-    10,    22,    12,    21,    22,    10,   -18,    12,    10,    22,
-    12,    25,    22,    10,   -19,    12,    10,    19,    12,    33,
-    32,    34,   -20,    35,    17,    27,    38,    39,    16,    41,
+     9,    10,     8,   -12,    30,    27,    12,    20,     9,    10,
+     8,   -12,   -18,    13,    12,    24,     9,    10,     8,   -12,
+    21,    13,    12,   -18,     9,    10,     8,   -12,    33,    13,
+    12,    25,    22,    10,    32,    22,    10,    13,    12,    22,
+    10,    12,    22,    10,   -19,    12,    22,    10,    12,    19,
+    34,   -20,    12,    35,    17,    27,    38,    39,    16,    41,
     42,    43,    14,    45 ]
 
 racc_action_check = [
-     0,    23,     0,     0,     0,     9,     0,    43,     0,    43,
-    43,    43,     9,    43,    38,    43,    38,    38,    38,    18,
-    38,     2,    38,     2,     2,     2,    32,     2,    13,     2,
-    32,    12,    32,    11,    24,    12,    22,    12,    24,    21,
-    24,    14,    20,    21,    10,    21,    20,     7,    20,    26,
-    26,    27,    30,    31,     6,    34,    35,    36,     4,    40,
+     0,     0,     0,     0,    23,    18,     0,     9,    43,    43,
+    43,    43,     9,     0,    43,    13,     2,     2,     2,     2,
+    11,    43,     2,    22,    38,    38,    38,    38,    26,     2,
+    38,    14,    32,    32,    26,    20,    20,    38,    32,    24,
+    24,    20,    12,    12,    10,    24,    21,    21,    12,     7,
+    27,    30,    21,    31,     6,    34,    35,    36,     4,    40,
     41,    42,     1,    44 ]
 
 racc_action_pointer = [
-    -5,    62,    16,   nil,    56,   nil,    52,    39,   nil,    -5,
-    34,    23,    26,    17,    41,   nil,   nil,   nil,    14,   nil,
-    37,    34,    26,   -11,    29,   nil,    47,    45,   nil,   nil,
-    42,    41,    21,   nil,    50,    42,    53,   nil,     9,   nil,
-    44,    44,    47,     2,    48,   nil ]
+    -3,    62,    13,   nil,    50,   nil,    46,    43,   nil,     5,
+    37,    13,    39,     6,    31,   nil,   nil,   nil,     2,   nil,
+    32,    43,    16,    -6,    36,   nil,    20,    37,   nil,   nil,
+    44,    43,    29,   nil,    52,    45,    42,   nil,    21,   nil,
+    47,    43,    50,     5,    51,   nil ]
 
 racc_action_default = [
     -2,   -24,    -2,    -3,   -24,    -5,   -24,   -24,   -11,   -14,
@@ -109,22 +105,22 @@ racc_shift_n = 46
 racc_token_table = {
   false => 0,
   :error => 1,
-  :SEMICOLON => 2,
-  "=" => 3,
-  ";" => 4,
-  :NAME => 5,
-  :COMMA => 6,
-  :CONST => 7,
-  :INT => 8,
-  :NUMBER => 9,
-  :OP => 10,
-  :OPENPAREN => 11,
-  :CLOSEPAREN => 12,
-  "if" => 13,
-  :OPENBRACE => 14,
-  :CLOSEBRACE => 15,
-  "else" => 16,
-  :EQUALS => 17 }
+  :EQUALS => 2,
+  :NAME => 3,
+  :NUMBER => 4,
+  :CONST => 5,
+  :INT => 6,
+  :OP => 7,
+  :SEMICOLON => 8,
+  :OPENPAREN => 9,
+  :CLOSEPAREN => 10,
+  :OPENBRACE => 11,
+  :CLOSEBRACE => 12,
+  :COMMA => 13,
+  "=" => 14,
+  ";" => 15,
+  "if" => 16,
+  "else" => 17 }
 
 racc_nt_base = 18
 
@@ -149,22 +145,22 @@ Racc_arg = [
 Racc_token_to_s_table = [
   "$end",
   "error",
-  "SEMICOLON",
-  "\"=\"",
-  "\";\"",
+  "EQUALS",
   "NAME",
-  "COMMA",
+  "NUMBER",
   "CONST",
   "INT",
-  "NUMBER",
   "OP",
+  "SEMICOLON",
   "OPENPAREN",
   "CLOSEPAREN",
-  "\"if\"",
   "OPENBRACE",
   "CLOSEBRACE",
+  "COMMA",
+  "\"=\"",
+  "\";\"",
+  "\"if\"",
   "\"else\"",
-  "EQUALS",
   "$start",
   "stmts",
   "stmt",
@@ -340,6 +336,18 @@ end
 
 end   # class CompilerLanguage
 
+
+	parser = CompilerLanguage.new
+
+	begin
+		val = parser.scan_str( $stdin.read)
+
+		rescue ParseError => e
+			p e
+			puts e.backtrace.inspect
+	end
+
+
 =begin
 		parser = CompilerLanguage.new
 		count = 0
@@ -367,4 +375,4 @@ end   # class CompilerLanguage
       puts 'unexpected error ?!'
       raise
 =end
-	end
+	#end

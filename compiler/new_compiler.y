@@ -1,6 +1,6 @@
 class CompilerLanguage
 start stmts
-#token EQUALS NAME NUMBER CONST INT OP SEMICOLON OPENPAREN CLOSEPAREN OPENBRACE CLOSEBRACE COMMA 
+token EQUALS NAME NUMBER CONST INT OP SEMICOLON OPENPAREN CLOSEPAREN OPENBRACE CLOSEBRACE COMMA 
 rule
 	stmts: stmt stmts {puts val.inspect}
 			 |
@@ -35,11 +35,19 @@ end
 
 ---- inner
 
-	def parse(input)
-		scan_str(input)
+---- footer ----
+
+	parser = CompilerLanguage.new
+
+	begin
+		val = parser.scan_str( $stdin.read)
+
+		rescue ParseError => e
+			p e
+			puts e.backtrace.inspect
 	end
 
----- footer ----
+
 =begin
 		parser = CompilerLanguage.new
 		count = 0
