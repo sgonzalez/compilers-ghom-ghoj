@@ -58,10 +58,10 @@ class CompilerLanguage < Racc::Parser
     when nil
       case
       when (text = @ss.scan(/[ \t]+/))
-         action { [false, false]} #no action
+         action {} #no action
 
       when (text = @ss.scan(/\/\/.*/))
-         action { [false, false]} # no action
+         action {} # no action
 
       when (text = @ss.scan(/\d+/))
          action { [:NUMBER, text.to_i] }
@@ -84,7 +84,7 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/<<|>>|\-|\+|\*|\/|>|<|==|<=|>=|\!=/))
          action { [:OP, text]}
 
-      when (text = @ss.scan(/=/))
+      when (text = @ss.scan(/\=/))
          action { [:EQUALS, text] }
 
       when (text = @ss.scan(/const/))
@@ -106,7 +106,7 @@ class CompilerLanguage < Racc::Parser
          action { [:WORD, text] }
 
       when (text = @ss.scan(/\n/))
-         action { [false, false]} # no action
+         action {} # no action
 
       when (text = @ss.scan(/./))
          action { [:TEXT, text] }
@@ -122,12 +122,4 @@ class CompilerLanguage < Racc::Parser
     token
   end  # def _next_token
 
-  def tokenize(code)
-    scan_setup(code)
-    tokens = []
-    while token = next_token
-      tokens << token
-    end
-    tokens
-  end
 end # class

@@ -15,33 +15,35 @@ class CompilerLanguage < Racc::Parser
 
 module_eval(<<'...end new_compiler.y/module_eval...', 'new_compiler.y', 37)
 
+	
+
 ...end new_compiler.y/module_eval...
 ##### State transition tables begin ###
 
 racc_action_table = [
-     9,    10,     8,   -12,    30,    27,    12,    20,     9,    10,
-     8,   -12,   -18,    13,    12,    24,     9,    10,     8,   -12,
-    21,    13,    12,   -18,     9,    10,     8,   -12,    33,    13,
-    12,    25,    22,    10,    32,    22,    10,    13,    12,    22,
-    10,    12,    22,    10,   -19,    12,    22,    10,    12,    19,
-    34,   -20,    12,    35,    17,    27,    38,    39,    16,    41,
+     9,    10,     8,   -12,    30,    27,    12,     9,    10,     8,
+   -12,    13,    24,    12,     9,    10,     8,   -12,    13,    21,
+    12,     9,    10,     8,   -12,    13,    20,    12,    32,    22,
+    10,   -18,    13,   -18,    33,    12,    22,    10,    22,    10,
+    22,    10,    12,    25,    12,   -19,    12,    22,    10,    19,
+    34,   -20,    35,    12,    17,    27,    38,    39,    16,    41,
     42,    43,    14,    45 ]
 
 racc_action_check = [
-     0,     0,     0,     0,    23,    18,     0,     9,    43,    43,
-    43,    43,     9,     0,    43,    13,     2,     2,     2,     2,
-    11,    43,     2,    22,    38,    38,    38,    38,    26,     2,
-    38,    14,    32,    32,    26,    20,    20,    38,    32,    24,
-    24,    20,    12,    12,    10,    24,    21,    21,    12,     7,
-    27,    30,    21,    31,     6,    34,    35,    36,     4,    40,
+     0,     0,     0,     0,    23,    18,     0,    43,    43,    43,
+    43,     0,    13,    43,     2,     2,     2,     2,    43,    11,
+     2,    38,    38,    38,    38,     2,     9,    38,    26,    32,
+    32,     9,    38,    22,    26,    32,    20,    20,    24,    24,
+    12,    12,    20,    14,    24,    10,    12,    21,    21,     7,
+    27,    30,    31,    21,     6,    34,    35,    36,     4,    40,
     41,    42,     1,    44 ]
 
 racc_action_pointer = [
-    -3,    62,    13,   nil,    50,   nil,    46,    43,   nil,     5,
-    37,    13,    39,     6,    31,   nil,   nil,   nil,     2,   nil,
-    32,    43,    16,    -6,    36,   nil,    20,    37,   nil,   nil,
-    44,    43,    29,   nil,    52,    45,    42,   nil,    21,   nil,
-    47,    43,    50,     5,    51,   nil ]
+    -3,    62,    11,   nil,    50,   nil,    46,    43,   nil,    24,
+    38,    12,    37,     3,    43,   nil,   nil,   nil,     2,   nil,
+    33,    44,    26,    -6,    35,   nil,    26,    37,   nil,   nil,
+    44,    42,    26,   nil,    52,    45,    49,   nil,    18,   nil,
+    47,    45,    50,     4,    51,   nil ]
 
 racc_action_default = [
     -2,   -24,    -2,    -3,   -24,    -5,   -24,   -24,   -11,   -14,
@@ -74,29 +76,29 @@ racc_goto_default = [
 
 racc_reduce_table = [
   0, 0, :racc_error,
-  2, 19, :_reduce_1,
-  0, 19, :_reduce_none,
-  1, 20, :_reduce_3,
-  2, 20, :_reduce_4,
-  1, 20, :_reduce_5,
-  2, 20, :_reduce_6,
-  6, 21, :_reduce_7,
-  4, 21, :_reduce_8,
-  1, 27, :_reduce_9,
-  3, 27, :_reduce_10,
-  1, 25, :_reduce_11,
-  0, 25, :_reduce_none,
-  1, 26, :_reduce_13,
-  1, 22, :_reduce_14,
-  1, 22, :_reduce_15,
-  3, 22, :_reduce_16,
-  3, 22, :_reduce_17,
-  1, 28, :_reduce_18,
-  1, 28, :_reduce_19,
-  3, 28, :_reduce_20,
-  7, 23, :_reduce_21,
-  11, 23, :_reduce_22,
-  3, 24, :_reduce_23 ]
+  2, 17, :_reduce_1,
+  0, 17, :_reduce_none,
+  1, 18, :_reduce_3,
+  2, 18, :_reduce_4,
+  1, 18, :_reduce_5,
+  2, 18, :_reduce_6,
+  6, 19, :_reduce_7,
+  4, 19, :_reduce_8,
+  1, 25, :_reduce_9,
+  3, 25, :_reduce_10,
+  1, 23, :_reduce_11,
+  0, 23, :_reduce_none,
+  1, 24, :_reduce_13,
+  1, 20, :_reduce_14,
+  1, 20, :_reduce_15,
+  3, 20, :_reduce_16,
+  3, 20, :_reduce_17,
+  1, 26, :_reduce_18,
+  1, 26, :_reduce_19,
+  3, 26, :_reduce_20,
+  7, 21, :_reduce_21,
+  11, 21, :_reduce_22,
+  3, 22, :_reduce_23 ]
 
 racc_reduce_n = 24
 
@@ -117,12 +119,10 @@ racc_token_table = {
   :OPENBRACE => 11,
   :CLOSEBRACE => 12,
   :COMMA => 13,
-  "=" => 14,
-  ";" => 15,
-  "if" => 16,
-  "else" => 17 }
+  "if" => 14,
+  "else" => 15 }
 
-racc_nt_base = 18
+racc_nt_base = 16
 
 racc_use_result_var = true
 
@@ -157,8 +157,6 @@ Racc_token_to_s_table = [
   "OPENBRACE",
   "CLOSEBRACE",
   "COMMA",
-  "\"=\"",
-  "\";\"",
   "\"if\"",
   "\"else\"",
   "$start",
@@ -338,9 +336,9 @@ end   # class CompilerLanguage
 
 
 	parser = CompilerLanguage.new
-
 	begin
 		val = parser.scan_str( $stdin.read)
+		p val
 
 		rescue ParseError => e
 			p e

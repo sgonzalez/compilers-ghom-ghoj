@@ -8,7 +8,7 @@ rule
 			| expr SEMICOLON {puts val.inspect}
 			| if    {puts val.inspect}
 			| assign SEMICOLON  {puts val.inspect}
-	declar: modifier type names '=' expr ';' {puts val.inspect}
+	declar: modifier type names EQUALS expr SEMICOLON {puts val.inspect}
 				| modifier type names SEMICOLON {puts val.inspect}
 	names: NAME  {puts val.inspect}
 			 | NAME COMMA names  {puts val.inspect}
@@ -35,12 +35,14 @@ end
 
 ---- inner
 
+	
+
 ---- footer ----
 
 	parser = CompilerLanguage.new
-
 	begin
 		val = parser.scan_str( $stdin.read)
+		p val
 
 		rescue ParseError => e
 			p e

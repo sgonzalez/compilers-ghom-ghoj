@@ -9,7 +9,7 @@ macro
   CLOSEPAREN		\)
   OPENCURLY		\{
   CLOSECURLY		\}
-  EQUALS		=
+  EQUALS		\=
   CONST			const
   INT			int
   COMMA			,
@@ -20,8 +20,8 @@ macro
   TEXT			.
 
 rule
-  {BLANK}		{ [false, false]} #no action
-  {SINGLELINE}		{ [false, false]} # no action
+  {BLANK}		{} #no action
+  {SINGLELINE}		{} # no action
   {NUMBER}		{ [:NUMBER, text.to_i] }
   {RETURNBLOCK}		{ [:RETURN, text] }
   {OPENPAREN}		{ [:OPEN_PAREN, text] }
@@ -36,17 +36,7 @@ rule
   {SEMICOLON}		{ [:SEMICOLON, text] }
   {NAME}		{ [:NAME, text] }
   {WORD}		{ [:WORD, text] }
-  {NEWLINE}		{ [false, false]} # no action
+  {NEWLINE}		{} # no action
   {TEXT}		{ [:TEXT, text] }
-
-inner
-  def tokenize(code)
-    scan_setup(code)
-    tokens = []
-    while token = next_token
-      tokens << token
-    end
-    tokens
-  end
 
 end
