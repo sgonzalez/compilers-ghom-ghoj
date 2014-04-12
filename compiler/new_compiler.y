@@ -1,32 +1,56 @@
 class CompilerLanguage
 start stmts
-token EQUALS NAME NUMBER CONST INT OP SEMICOLON OPENPAREN CLOSEPAREN OPENBRACE CLOSEBRACE COMMA IF ELSE 
+token EQUALS NAME NUMBER CONST INT OP SEMICOLON OPENPAREN CLOSEPAREN OPENBRACE CLOSEBRACE COMMA IF ELSE RETURN
 rule
-	stmts: stmt stmts {puts val.inspect}
+	stmts: stmt stmts {puts "stmts"
+										puts val.inspect}
 			 |
-	stmt: declar    {puts val.inspect}
-			| expr SEMICOLON {puts val.inspect}
-			| if    {puts val.inspect}
-			| assign SEMICOLON  {puts val.inspect}
-	declar: modifier type names EQUALS expr SEMICOLON {puts val.inspect}
-				| modifier type names SEMICOLON {puts val.inspect}
-	names: NAME  {puts "name"
+	stmt: declar    { puts "stmt"
+										puts val.inspect}
+			| expr SEMICOLON {puts "stmt"
+												puts val.inspect}
+			| if    { puts "stmt"
 								puts val.inspect}
-			 | NAME COMMA names  {puts val.inspect}
-	modifier: CONST  {puts val.inspect}
+			| assign SEMICOLON  { puts "stmt"
+														puts val.inspect}
+			| return SEMICOLON
+	
+	return: RETURN expr
+	declar: modifier type names EQUALS expr SEMICOLON { puts "declar"
+																											puts val.inspect}
+				| modifier type names SEMICOLON { puts "declar"
+																					puts val.inspect}
+	names: NAME  {puts "names"
+								puts val.inspect}
+			 | NAME COMMA names  {puts "names"
+			 											puts val.inspect}
+	modifier: CONST  {puts "modifier"
+										puts val.inspect}
 					|
-	type: INT   {puts val.inspect}
-	expr: NAME    {puts val.inspect}
-			| NUMBER   {puts val.inspect}
-			| NAME OP expr  {puts val.inspect}
-			| NUMBER OP expr  {puts val.inspect} 
-			#| OPENPAREN expr CLOSEPAREN   {puts val.inspect}
-	#subexpr: NAME  {puts val.inspect}
-		#		 | NUMBER  {puts val.inspect}
-		#		 | OPENPAREN expr CLOSEPAREN  {puts val.inspect}
-	if: IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE {puts val.inspect} 
-		| IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE ELSE OPENBRACE stmts CLOSEBRACE  {puts val.inspect}
-	assign: NAME EQUALS expr   {puts val.inspect}
+	type: INT   {	puts "type"
+								puts val.inspect}
+	expr: NAME    { puts "expr"
+									puts val.inspect}
+			| NUMBER   {puts "expr"
+									puts val.inspect}
+			| subexpr OP expr {puts "expr"
+												 puts val.inspect}
+			#| NAME OP expr  {puts val.inspect}
+			#| NUMBER OP expr  {puts val.inspect} 
+			| OPENPAREN expr CLOSEPAREN   {puts "expr"
+																			puts val.inspect}
+	subexpr: NAME  {puts "subexpr" 
+									puts val.inspect}
+				 | NUMBER  {puts "subexpr"
+				 						puts val.inspect}
+				 | OPENPAREN expr CLOSEPAREN  {puts "subexpr"
+				 																puts val.inspect}
+	if: IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE {puts "if"
+																																puts val.inspect} 
+		| IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE ELSE OPENBRACE stmts CLOSEBRACE  {puts "if"
+																																																puts val.inspect}
+	assign: NAME EQUALS expr   {puts "assign"
+															puts val.inspect}
 end
 
 ---- header

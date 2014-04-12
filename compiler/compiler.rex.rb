@@ -87,7 +87,7 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/[}]/))
          action { [:CLOSEBRACE, text] }
 
-      when (text = @ss.scan(/<<|>>|\-|\+|\*|\/|>|<|\=\=|<\=|>\=|\!\=/))
+      when (text = @ss.scan(/<<|>>|\-|\+|\*|\/|\=\=|<\=|>\=|\!\=|<|>/))
          action { [:OP, text]}
 
       when (text = @ss.scan(/[=]/))

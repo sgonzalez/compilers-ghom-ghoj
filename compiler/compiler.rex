@@ -4,9 +4,9 @@ macro
   SINGLELINE		\/\/.*
 	IF 				if
 	ELSE			else
+	RETURN return 
   NUMBER		\d+
-  RETURNBLOCK		return
-  OP		<<|>>|\-|\+|\*|\/|>|<|\=\=|<\=|>\=|\!\=
+  OP		<<|>>|\-|\+|\*|\/|\=\=|<\=|>\=|\!\=|<|>
   OPENPAREN		[(]
   CLOSEPAREN		[)]
   OPENBRACE		[{]
@@ -27,7 +27,7 @@ rule
   {NUMBER}		{ [:NUMBER, text.to_i] }
 	{IF}			{ [:IF, text]}
 	{ELSE}		{ [:ELSE, text]}
-  {RETURNBLOCK}		{ [:RETURN, text] }
+  {RETURN}		{ [:RETURN, text] }
   {OPENPAREN}		{ [:OPENPAREN, text] }
   {CLOSEPAREN}		{ [:CLOSEPAREN, text] }
   {OPENBRACE}		{ [:OPENBRACE, text] }
