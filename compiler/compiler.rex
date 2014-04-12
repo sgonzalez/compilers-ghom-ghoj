@@ -2,32 +2,36 @@ class CompilerLanguage
 macro
   BLANK			[\ \t]+
   SINGLELINE		\/\/.*
+	IF 				if
+	ELSE			else
   NUMBER		\d+
   RETURNBLOCK		return
-  OP		<<|>>|\-|\+|\*|\/|>|<|==|<=|>=|\!=
-  OPENPAREN		\(
-  CLOSEPAREN		\)
-  OPENCURLY		\{
-  CLOSECURLY		\}
-  EQUALS		\=
+  OP		<<|>>|\-|\+|\*|\/|>|<|\=\=|<\=|>\=|\!\=
+  OPENPAREN		[(]
+  CLOSEPAREN		[)]
+  OPENBRACE		[{]
+  CLOSEBRACE		[}]
+  EQUALS		[=]
   CONST			const
   INT			int
-  COMMA			,
-  SEMICOLON		;
+  COMMA		[,]
+  SEMICOLON		[;]
   NAME			\w(\w|\d)*
   WORD			\w+
-  NEWLINE		\n
+  NEWLINE		[\n]
   TEXT			.
 
 rule
   {BLANK}		{} #no action
   {SINGLELINE}		{} # no action
   {NUMBER}		{ [:NUMBER, text.to_i] }
+	{IF}			{ [:IF, text]}
+	{ELSE}		{ [:ELSE, text]}
   {RETURNBLOCK}		{ [:RETURN, text] }
-  {OPENPAREN}		{ [:OPEN_PAREN, text] }
-  {CLOSEPAREN}		{ [:CLOSE_PAREN, text] }
-  {OPENCURLY}		{ [:OPEN_CURLY, text] }
-  {CLOSECURLY}		{ [:CLOSE_CURLY, text] }
+  {OPENPAREN}		{ [:OPENPAREN, text] }
+  {CLOSEPAREN}		{ [:CLOSEPAREN, text] }
+  {OPENBRACE}		{ [:OPENBRACE, text] }
+  {CLOSEBRACE}		{ [:CLOSEBRACE, text] }
 	{OP} 		{ [:OP, text]}
   {EQUALS}		{ [:EQUALS, text] }
   {CONST}		{ [:CONST, text] }

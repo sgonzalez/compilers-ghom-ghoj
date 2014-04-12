@@ -66,25 +66,31 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/\d+/))
          action { [:NUMBER, text.to_i] }
 
+      when (text = @ss.scan(/if/))
+         action { [:IF, text]}
+
+      when (text = @ss.scan(/else/))
+         action { [:ELSE, text]}
+
       when (text = @ss.scan(/return/))
          action { [:RETURN, text] }
 
-      when (text = @ss.scan(/\(/))
-         action { [:OPEN_PAREN, text] }
+      when (text = @ss.scan(/[(]/))
+         action { [:OPENPAREN, text] }
 
-      when (text = @ss.scan(/\)/))
-         action { [:CLOSE_PAREN, text] }
+      when (text = @ss.scan(/[)]/))
+         action { [:CLOSEPAREN, text] }
 
-      when (text = @ss.scan(/\{/))
-         action { [:OPEN_CURLY, text] }
+      when (text = @ss.scan(/[{]/))
+         action { [:OPENBRACE, text] }
 
-      when (text = @ss.scan(/\}/))
-         action { [:CLOSE_CURLY, text] }
+      when (text = @ss.scan(/[}]/))
+         action { [:CLOSEBRACE, text] }
 
-      when (text = @ss.scan(/<<|>>|\-|\+|\*|\/|>|<|==|<=|>=|\!=/))
+      when (text = @ss.scan(/<<|>>|\-|\+|\*|\/|>|<|\=\=|<\=|>\=|\!\=/))
          action { [:OP, text]}
 
-      when (text = @ss.scan(/\=/))
+      when (text = @ss.scan(/[=]/))
          action { [:EQUALS, text] }
 
       when (text = @ss.scan(/const/))
@@ -93,10 +99,10 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/int/))
          action { [:INT, text] }
 
-      when (text = @ss.scan(/,/))
+      when (text = @ss.scan(/[,]/))
          action { [:COMMA, text] }
 
-      when (text = @ss.scan(/;/))
+      when (text = @ss.scan(/[;]/))
          action { [:SEMICOLON, text] }
 
       when (text = @ss.scan(/\w(\w|\d)*/))
@@ -105,7 +111,7 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/\w+/))
          action { [:WORD, text] }
 
-      when (text = @ss.scan(/\n/))
+      when (text = @ss.scan(/[\n]/))
          action {} # no action
 
       when (text = @ss.scan(/./))

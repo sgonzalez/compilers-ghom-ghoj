@@ -1,6 +1,6 @@
 class CompilerLanguage
 start stmts
-token EQUALS NAME NUMBER CONST INT OP SEMICOLON OPENPAREN CLOSEPAREN OPENBRACE CLOSEBRACE COMMA 
+token EQUALS NAME NUMBER CONST INT OP SEMICOLON OPENPAREN CLOSEPAREN OPENBRACE CLOSEBRACE COMMA IF ELSE 
 rule
 	stmts: stmt stmts {puts val.inspect}
 			 |
@@ -10,20 +10,22 @@ rule
 			| assign SEMICOLON  {puts val.inspect}
 	declar: modifier type names EQUALS expr SEMICOLON {puts val.inspect}
 				| modifier type names SEMICOLON {puts val.inspect}
-	names: NAME  {puts val.inspect}
+	names: NAME  {puts "name"
+								puts val.inspect}
 			 | NAME COMMA names  {puts val.inspect}
 	modifier: CONST  {puts val.inspect}
 					|
 	type: INT   {puts val.inspect}
 	expr: NAME    {puts val.inspect}
 			| NUMBER   {puts val.inspect}
-			| subexpr OP expr   {puts val.inspect}
-			| OPENPAREN expr CLOSEPAREN   {puts val.inspect}
-	subexpr: NAME  {puts val.inspect}
-				 | NUMBER  {puts val.inspect}
-				 | OPENPAREN expr CLOSEPAREN  {puts val.inspect}
-	if: 'if' OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE {puts val.inspect} 
-		| 'if' OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE 'else' OPENBRACE stmts CLOSEBRACE  {puts val.inspect}
+			| NAME OP expr  {puts val.inspect}
+			| NUMBER OP expr  {puts val.inspect} 
+			#| OPENPAREN expr CLOSEPAREN   {puts val.inspect}
+	#subexpr: NAME  {puts val.inspect}
+		#		 | NUMBER  {puts val.inspect}
+		#		 | OPENPAREN expr CLOSEPAREN  {puts val.inspect}
+	if: IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE {puts val.inspect} 
+		| IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE ELSE OPENBRACE stmts CLOSEBRACE  {puts val.inspect}
 	assign: NAME EQUALS expr   {puts val.inspect}
 end
 
@@ -44,9 +46,9 @@ end
 		val = parser.scan_str( $stdin.read)
 		p val
 
-		rescue ParseError => e
-			p e
-			puts e.backtrace.inspect
+		#rescue ParseError => e
+		#	p e
+	#		puts e.backtrace.inspect
 	end
 
 
