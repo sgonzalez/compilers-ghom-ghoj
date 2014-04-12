@@ -1,5 +1,5 @@
 #!/bin/bash
 
-racc compiler.y
+racc new_compiler.y
 rex compiler.rex
 

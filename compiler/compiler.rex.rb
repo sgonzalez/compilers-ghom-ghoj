@@ -69,36 +69,6 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/return/))
          action { [:RETURN, text] }
 
-      when (text = @ss.scan(/<</))
-         action { [:LEFT_BIT_SHIFT, text] }
-
-      when (text = @ss.scan(/>>/))
-         action { [:RIGHT_BIT_SHIFT, text] }
-
-      when (text = @ss.scan(/\-/))
-         action { [:MINUS, text] }
-
-      when (text = @ss.scan(/\+/))
-         action { [:PLUS, text] }
-
-      when (text = @ss.scan(/\*/))
-         action { [:MULTIPLY, text] }
-
-      when (text = @ss.scan(/\//))
-         action { [:DIVIDE, text] }
-
-      when (text = @ss.scan(/\!=/))
-         action { [:NOT_EQUALS, text] }
-
-      when (text = @ss.scan(/==/))
-         action { [:EQUALS_EQUALS, text] }
-
-      when (text = @ss.scan(/<=/))
-         action { [:LESS_EQUALS, text] }
-
-      when (text = @ss.scan(/>=/))
-         action { [:GREATER_EQUALS, text] }
-
       when (text = @ss.scan(/\(/))
          action { [:OPEN_PAREN, text] }
 
@@ -111,11 +81,8 @@ class CompilerLanguage < Racc::Parser
       when (text = @ss.scan(/\}/))
          action { [:CLOSE_CURLY, text] }
 
-      when (text = @ss.scan(/>/))
-         action { [:GREATER, text] }
-
-      when (text = @ss.scan(/</))
-         action { [:LESS, text] }
+      when (text = @ss.scan(/<<|>>|\-|\+|\*|\/|>|<|==|<=|>=|\!=/))
+         action { [:OP, text]}
 
       when (text = @ss.scan(/=/))
          action { [:EQUALS, text] }

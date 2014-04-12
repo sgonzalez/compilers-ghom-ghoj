@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>parse-tree-to-graphvis.py - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body class="file">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_txt.html">README</a>
+  
+    <li class="file"><a href="./build_sh.html">build.sh</a>
+  
+    <li class="file"><a href="./compiler_rex.html">compiler.rex</a>
+  
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="./parse-tree-to-graphvis_py.html">parse-tree-to-graphvis.py</a>
+  
+    <li class="file"><a href="./setup_sh.html">setup.sh</a>
+  
+    <li class="file"><a href="./test_lis.html">test.lis</a>
+  
+    <li class="file"><a href="./test_txt.html">test</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./AbstractNode.html">AbstractNode</a>
+  
+    <li><a href="./Compiler.html">Compiler</a>
+  
+    <li><a href="./CompilerLanguage.html">CompilerLanguage</a>
+  
+    <li><a href="./CompilerLanguage/ScanError.html">CompilerLanguage::ScanError</a>
+  
+    <li><a href="./IfNode.html">IfNode</a>
+  
+    <li><a href="./NeedsBooleanPredicate.html">NeedsBooleanPredicate</a>
+  
+    <li><a href="./NeedsCompatibleTypes.html">NeedsCompatibleTypes</a>
+  
+    <li><a href="./ReflectiveVisitor.html">ReflectiveVisitor</a>
+  
+    <li><a href="./ShiftNode.html">ShiftNode</a>
+  
+    <li><a href="./TestCompilerLanguage.html">TestCompilerLanguage</a>
+  
+    <li><a href="./TypeChecking.html">TypeChecking</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<p>#!/usr/bin/env python</p>
+
+<p>“”“A pathetically simple Python script to convert a simple tree
+representation to a dot(1) configuration file.  Keith Hellman
+&lt;khellman@mines.edu&gt; for  Spring 2014 Compilers.</p>
+
+<p>On a Linux box with dot(1) installed (typically found in the graphvis
+package), invoke like this:</p>
+
+<pre>$ ls
+parsetree.txt
+$ cat parsetree.txt | ./parse-tree-to-graphvis | dot -Tpng -o parsetree.png
+$ display parsetree.png</pre>
+
+<p>Input format is in two parts:  node identification and then edge
+identification.</p>
+
+<pre>$ cat parsetree.txt
+nodeA Node A
+leafB Leaf B
+nodeC Node C
+leafD Leaf D
+leafE Leaf E
+
+nodeA leafB nodeC
+nodeC leafD leafE
+$</pre>
+
+<p>This would generate a graph:</p>
+
+<pre>   Node A
+   /    \
+Leaf B  Node C
+        /   \
+    Leaf C   \
+            Leaf D</pre>
+
+<p>The input format is line oriented, ignores empty lines, and does not
+support comments. “”“</p>
+
+<p>import sys</p>
+
+<p>def nextline( f ) :</p>
+
+<pre>l = f.readline()
+while l : 
+    l = l.split()
+    if l :
+        return l[0], l[1:]
+    l = f.readline()
+return [&#39;&#39;, []]</pre>
+
+<p>def read( f ) :</p>
+
+<pre>nodes = {}
+edges = []
+
+node, resid = nextline( f )
+while node :
+    if node in nodes :
+        # node children links
+        edges.extend( [ &#39;&quot;%s&quot; -- &quot;%s&quot;;&#39; % (node,c) for c in resid ] )
+    else :
+        # new node
+        nodes[node]=&quot; &quot;.join(resid) or node
+
+    node, resid = nextline( f )
+
+return nodes, edges</pre>
+
+<p>def write( f, nodes, edges ) :</p>
+
+<pre>sep=&quot;\n  &quot;;
+f.write( &quot;graph Pt {&quot; + sep + &quot;ordering=out;&quot; + sep )
+f.write( sep.join( [ &#39;&quot;%s&quot; [label=&quot;%s&quot;];&#39; % x for x in nodes.iteritems() ] ) + sep )
+f.write( sep.join( edges ) + sep )
+f.write( &quot;}\n&quot; );</pre>
+
+<p>n, e = read( sys.stdin ) write( sys.stdout, n, e )</p>
+
+</div>
+
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

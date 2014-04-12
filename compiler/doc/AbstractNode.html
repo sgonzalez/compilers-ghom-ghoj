@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class AbstractNode - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>reflectivevisitor.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-make_family">::make_family</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-adopt_children">#adopt_children</a>
+    
+    <li ><a href="#method-i-children">#children</a>
+    
+    <li ><a href="#method-i-left_siblings">#left_siblings</a>
+    
+    <li ><a href="#method-i-make_siblings">#make_siblings</a>
+    
+    <li ><a href="#method-i-right_siblings">#right_siblings</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_txt.html">README</a>
+  
+    <li class="file"><a href="./build_sh.html">build.sh</a>
+  
+    <li class="file"><a href="./compiler_rex.html">compiler.rex</a>
+  
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="./parse-tree-to-graphvis_py.html">parse-tree-to-graphvis.py</a>
+  
+    <li class="file"><a href="./setup_sh.html">setup.sh</a>
+  
+    <li class="file"><a href="./test_lis.html">test.lis</a>
+  
+    <li class="file"><a href="./test_txt.html">test</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./AbstractNode.html">AbstractNode</a>
+  
+    <li><a href="./Compiler.html">Compiler</a>
+  
+    <li><a href="./CompilerLanguage.html">CompilerLanguage</a>
+  
+    <li><a href="./CompilerLanguage/ScanError.html">CompilerLanguage::ScanError</a>
+  
+    <li><a href="./IfNode.html">IfNode</a>
+  
+    <li><a href="./NeedsBooleanPredicate.html">NeedsBooleanPredicate</a>
+  
+    <li><a href="./NeedsCompatibleTypes.html">NeedsCompatibleTypes</a>
+  
+    <li><a href="./ReflectiveVisitor.html">ReflectiveVisitor</a>
+  
+    <li><a href="./ShiftNode.html">ShiftNode</a>
+  
+    <li><a href="./TestCompilerLanguage.html">TestCompilerLanguage</a>
+  
+    <li><a href="./TypeChecking.html">TypeChecking</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class AbstractNode</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-is_visited" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">is_visited</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-leftmost_child" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">leftmost_child</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-leftmost_sibling" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">leftmost_sibling</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-node_type" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">node_type</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-parent" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">parent</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-right_sibling" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">right_sibling</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-make_family" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_family</span><span
+            class="method-args">(parent, *children)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="make_family-source">
+            <pre><span class="ruby-comment"># File reflectivevisitor.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">make_family</span>(<span class="ruby-identifier">parent</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">children</span>)
+  <span class="ruby-identifier">child_head</span> = <span class="ruby-identifier">children</span>[<span class="ruby-value">0</span>]
+  <span class="ruby-identifier">children</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">child</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">child_head</span>
+      <span class="ruby-identifier">child_head</span>.<span class="ruby-identifier">make_siblings</span>(<span class="ruby-identifier">child</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">node</span> = <span class="ruby-constant">AbstractNode</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span> = <span class="ruby-identifier">parent</span>
+  <span class="ruby-identifier">node</span>.<span class="ruby-identifier">adopt_children</span>(<span class="ruby-identifier">child_head</span>)
+  <span class="ruby-identifier">node</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- make_family-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- make_family-method -->
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(node_type=nil, leftmost_child=nil, leftmost_sibling=nil, right_sibling=nil, parent=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File reflectivevisitor.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">node_type</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">leftmost_child</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">leftmost_sibling</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">right_sibling</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">parent</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@node_type</span> = <span class="ruby-identifier">node_type</span>  <span class="ruby-comment"># a symbol</span>
+  <span class="ruby-ivar">@leftmost_child</span> = <span class="ruby-identifier">leftmost_child</span>
+  <span class="ruby-ivar">@leftmost_sibling</span> = <span class="ruby-identifier">leftmost_sibling</span>
+  <span class="ruby-ivar">@right_sibling</span> = <span class="ruby-identifier">right_sibling</span>
+  <span class="ruby-ivar">@parent</span> = <span class="ruby-identifier">parent</span>
+  <span class="ruby-ivar">@is_visited</span> = <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-adopt_children" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adopt_children</span><span
+            class="method-args">(y)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="adopt_children-source">
+            <pre><span class="ruby-comment"># File reflectivevisitor.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">adopt_children</span>(<span class="ruby-identifier">y</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">leftmost_child</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">leftmost_child</span>.<span class="ruby-identifier">make_siblings</span>(<span class="ruby-identifier">y</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">ysibs</span> = <span class="ruby-identifier">y</span>.<span class="ruby-identifier">leftmost_sibling</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">leftmost_child</span> = <span class="ruby-identifier">ysibs</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">ysibs</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">ysibs</span>.<span class="ruby-identifier">parent</span> = <span class="ruby-keyword">self</span>
+      <span class="ruby-identifier">ysibs</span> = <span class="ruby-identifier">ysibs</span>.<span class="ruby-identifier">right_sibling</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- adopt_children-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- adopt_children-method -->
+
+    
+      <div id="method-i-children" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">children</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="children-source">
+            <pre><span class="ruby-comment"># File reflectivevisitor.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">children</span>
+  <span class="ruby-identifier">childs</span> = []
+  <span class="ruby-identifier">ptr</span> = <span class="ruby-ivar">@leftmost_child</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">childs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ptr</span>
+    <span class="ruby-identifier">ptr</span> = <span class="ruby-identifier">ptr</span>.<span class="ruby-identifier">right_sibling</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">ptr</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">childs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- children-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- children-method -->
+
+    
+      <div id="method-i-left_siblings" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">left_siblings</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="left_siblings-source">
+            <pre><span class="ruby-comment"># File reflectivevisitor.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">left_siblings</span>
+  <span class="ruby-identifier">siblings</span> = []
+  <span class="ruby-identifier">ptr</span> = <span class="ruby-ivar">@leftmost_sibling</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">siblings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ptr</span>
+    <span class="ruby-identifier">ptr</span> = <span class="ruby-identifier">ptr</span>.<span class="ruby-identifier">right_sibling</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">ptr</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>
+  <span class="ruby-identifier">siblings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- left_siblings-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- left_siblings-method -->
+
+    
+      <div id="method-i-make_siblings" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_siblings</span><span
+            class="method-args">(y)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="make_siblings-source">
+            <pre><span class="ruby-comment"># File reflectivevisitor.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">make_siblings</span>(<span class="ruby-identifier">y</span>)
+  <span class="ruby-identifier">xsibs</span> = <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">xsibs</span>.<span class="ruby-identifier">right_siblings</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">xsibs</span> = <span class="ruby-identifier">xsibs</span>.<span class="ruby-identifier">right_sibling</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ysibs</span> = <span class="ruby-identifier">y</span>.<span class="ruby-identifier">leftmost_sibling</span>
+  <span class="ruby-identifier">xsibs</span>.<span class="ruby-identifier">right_sibling</span> = <span class="ruby-identifier">ysibs</span>
+  <span class="ruby-identifier">ysibs</span>.<span class="ruby-identifier">leftmost_sibling</span> = <span class="ruby-identifier">xsibs</span>.<span class="ruby-identifier">leftmost_sibling</span>
+  <span class="ruby-identifier">ysibs</span>.<span class="ruby-identifier">parent</span> = <span class="ruby-identifier">xsibs</span>.<span class="ruby-identifier">parent</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">ysibs</span>.<span class="ruby-identifier">right_siblings</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">ysibs</span> = <span class="ruby-identifier">ysibs</span>.<span class="ruby-identifier">right_sibling</span>
+    <span class="ruby-identifier">ysibs</span>.<span class="ruby-identifier">leftmost_sibling</span> = <span class="ruby-identifier">xsibs</span>.<span class="ruby-identifier">leftmost_sibling</span>
+    <span class="ruby-identifier">ysibs</span>.<span class="ruby-identifier">parent</span> = <span class="ruby-identifier">xsibs</span>.<span class="ruby-identifier">parent</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ysibs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- make_siblings-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- make_siblings-method -->
+
+    
+      <div id="method-i-right_siblings" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">right_siblings</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="right_siblings-source">
+            <pre><span class="ruby-comment"># File reflectivevisitor.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">right_siblings</span>
+  <span class="ruby-identifier">siblings</span> = []
+  <span class="ruby-identifier">ptr</span> = <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">siblings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ptr</span>
+    <span class="ruby-identifier">ptr</span> = <span class="ruby-identifier">ptr</span>.<span class="ruby-identifier">right_sibling</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">ptr</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">siblings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- right_siblings-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- right_siblings-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

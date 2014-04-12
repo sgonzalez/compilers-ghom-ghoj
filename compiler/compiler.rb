@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 require './compiler.rex.rb'
-require './compiler.tab.rb'
+require './new_compiler.tab.rb'
 
 class Compiler
   @lang = CompilerLanguage.new

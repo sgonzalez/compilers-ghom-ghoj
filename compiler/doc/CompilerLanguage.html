@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class CompilerLanguage - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>compiler.rex.rb
+    <li>compiler.tab.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Racc::Parser
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-i-_next_token">#_next_token</a>
+    
+    <li ><a href="#method-i-_reduce_none">#_reduce_none</a>
+    
+    <li ><a href="#method-i-action">#action</a>
+    
+    <li ><a href="#method-i-load_file">#load_file</a>
+    
+    <li ><a href="#method-i-next_token">#next_token</a>
+    
+    <li ><a href="#method-i-scan">#scan</a>
+    
+    <li ><a href="#method-i-scan_file">#scan_file</a>
+    
+    <li ><a href="#method-i-scan_setup">#scan_setup</a>
+    
+    <li ><a href="#method-i-scan_str">#scan_str</a>
+    
+    <li ><a href="#method-i-tokenize">#tokenize</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_txt.html">README</a>
+  
+    <li class="file"><a href="./build_sh.html">build.sh</a>
+  
+    <li class="file"><a href="./compiler_rex.html">compiler.rex</a>
+  
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="./parse-tree-to-graphvis_py.html">parse-tree-to-graphvis.py</a>
+  
+    <li class="file"><a href="./setup_sh.html">setup.sh</a>
+  
+    <li class="file"><a href="./test_lis.html">test.lis</a>
+  
+    <li class="file"><a href="./test_txt.html">test</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./AbstractNode.html">AbstractNode</a>
+  
+    <li><a href="./Compiler.html">Compiler</a>
+  
+    <li><a href="./CompilerLanguage.html">CompilerLanguage</a>
+  
+    <li><a href="./CompilerLanguage/ScanError.html">CompilerLanguage::ScanError</a>
+  
+    <li><a href="./IfNode.html">IfNode</a>
+  
+    <li><a href="./NeedsBooleanPredicate.html">NeedsBooleanPredicate</a>
+  
+    <li><a href="./NeedsCompatibleTypes.html">NeedsCompatibleTypes</a>
+  
+    <li><a href="./ReflectiveVisitor.html">ReflectiveVisitor</a>
+  
+    <li><a href="./ShiftNode.html">ShiftNode</a>
+  
+    <li><a href="./TestCompilerLanguage.html">TestCompilerLanguage</a>
+  
+    <li><a href="./TypeChecking.html">TypeChecking</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class CompilerLanguage</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="Racc_arg">Racc_arg
+        
+        <dd class="description">
+        
+      
+        <dt id="Racc_debug_parser">Racc_debug_parser
+        
+        <dd class="description">
+        
+      
+        <dt id="Racc_token_to_s_table">Racc_token_to_s_table
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-filename" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">filename</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-lineno" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">lineno</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-state" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">state</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-_next_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_next_token</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_next_token-source">
+            <pre><span class="ruby-comment"># File compiler.rex.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">_next_token</span>
+  <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">peek</span>(<span class="ruby-value">1</span>)
+  <span class="ruby-ivar">@lineno</span>  <span class="ruby-operator">+=</span>  <span class="ruby-value">1</span>  <span class="ruby-keyword">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-identifier">token</span> = <span class="ruby-keyword">case</span> <span class="ruby-ivar">@state</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">case</span>
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/[ \t]+/</span>))
+       <span class="ruby-identifier">action</span> {} <span class="ruby-comment">#no action</span>
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\/\/.*/</span>))
+       <span class="ruby-identifier">action</span> {} <span class="ruby-comment"># no action</span>
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\d+/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:NUMBER</span>, <span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/return/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:RETURN</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&lt;&lt;/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:LEFT_BIT_SHIFT</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&gt;&gt;/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:RIGHT_BIT_SHIFT</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\-/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:MINUS</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\+/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:PLUS</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\*/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:MULTIPLY</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\//</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:DIVIDE</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\!=/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:NOT_EQUALS</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/==/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:EQUALS_EQUALS</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&lt;=/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:LESS_EQUALS</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&gt;=/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:GREATER_EQUALS</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\(/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:OPEN_PAREN</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\)/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:CLOSE_PAREN</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\{/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:OPEN_CURLY</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\}/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:CLOSE_CURLY</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&gt;/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:GREATER</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&lt;/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:LESS</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/=/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:EQUALS</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/const/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:CONST</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/int/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:INT</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/,/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:COMMA</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/;/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:SEMICOLON</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\w(\w|\d)*/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:NAME</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\w+/</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:WORD</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\n/</span>))
+       <span class="ruby-identifier">action</span> {} <span class="ruby-comment"># no action</span>
+
+    <span class="ruby-keyword">when</span> (<span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/./</span>))
+       <span class="ruby-identifier">action</span> { [<span class="ruby-value">:TEXT</span>, <span class="ruby-identifier">text</span>] }
+
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">string</span>[<span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">pos</span> <span class="ruby-operator">..</span> <span class="ruby-value">-1</span>]
+      <span class="ruby-identifier">raise</span>  <span class="ruby-constant">ScanError</span>, <span class="ruby-string">&quot;can not match: &#39;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;&#39;&quot;</span>
+    <span class="ruby-keyword">end</span>  <span class="ruby-comment"># if</span>
+
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span>  <span class="ruby-constant">ScanError</span>, <span class="ruby-string">&quot;undefined state: &#39;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;&#39;&quot;</span>
+  <span class="ruby-keyword">end</span>  <span class="ruby-comment"># case state</span>
+  <span class="ruby-identifier">token</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- _next_token-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- _next_token-method -->
+
+    
+      <div id="method-i-_reduce_none" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_reduce_none</span><span
+            class="method-args">(val, _values, result)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_reduce_none-source">
+            <pre><span class="ruby-comment"># File compiler.tab.rb, line 425</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">_reduce_none</span>(<span class="ruby-identifier">val</span>, <span class="ruby-identifier">_values</span>, <span class="ruby-identifier">result</span>)
+  <span class="ruby-identifier">val</span>[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- _reduce_none-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- _reduce_none-method -->
+
+    
+      <div id="method-i-action" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">action</span><span
+            class="method-args">() { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="action-source">
+            <pre><span class="ruby-comment"># File compiler.rex.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">action</span>
+  <span class="ruby-keyword">yield</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- action-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- action-method -->
+
+    
+      <div id="method-i-load_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_file</span><span
+            class="method-args">( filename )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_file-source">
+            <pre><span class="ruby-comment"># File compiler.rex.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_file</span>( <span class="ruby-identifier">filename</span> )
+  <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">filename</span>
+  <span class="ruby-identifier">open</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-string">&quot;r&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">scan_setup</span>(<span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_file-method -->
+
+    
+      <div id="method-i-next_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">next_token</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="next_token-source">
+            <pre><span class="ruby-comment"># File compiler.rex.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">next_token</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">eos?</span>
+  
+  <span class="ruby-comment"># skips empty actions</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">token</span> = <span class="ruby-identifier">_next_token</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">eos?</span>; <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">token</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- next_token-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- next_token-method -->
+
+    
+      <div id="method-i-scan" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">scan</span><span
+            class="method-args">(str)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="CompilerLanguage.html#method-i-scan_str">scan_str</a>
+        </div>
+        
+      </div><!-- scan-method -->
+
+    
+      <div id="method-i-scan_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scan_file</span><span
+            class="method-args">( filename )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scan_file-source">
+            <pre><span class="ruby-comment"># File compiler.rex.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">scan_file</span>( <span class="ruby-identifier">filename</span> )
+  <span class="ruby-identifier">load_file</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-identifier">do_parse</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- scan_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- scan_file-method -->
+
+    
+      <div id="method-i-scan_setup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scan_setup</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scan_setup-source">
+            <pre><span class="ruby-comment"># File compiler.rex.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">scan_setup</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-ivar">@ss</span> = <span class="ruby-constant">StringScanner</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-ivar">@lineno</span> =  <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@state</span>  = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- scan_setup-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- scan_setup-method -->
+
+    
+      <div id="method-i-scan_str" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scan_str</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scan_str-source">
+            <pre><span class="ruby-comment"># File compiler.rex.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">scan_str</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-identifier">scan_setup</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-identifier">do_parse</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- scan_str-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="CompilerLanguage.html#method-i-scan">scan</a>
+        </div>
+        
+
+        
+      </div><!-- scan_str-method -->
+
+    
+      <div id="method-i-tokenize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tokenize</span><span
+            class="method-args">(code)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="tokenize-source">
+            <pre><span class="ruby-comment"># File compiler.rex.rb, line 158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">tokenize</span>(<span class="ruby-identifier">code</span>)
+  <span class="ruby-identifier">scan_setup</span>(<span class="ruby-identifier">code</span>)
+  <span class="ruby-identifier">tokens</span> = []
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">token</span> = <span class="ruby-identifier">next_token</span>
+    <span class="ruby-identifier">tokens</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">token</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">tokens</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- tokenize-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- tokenize-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
