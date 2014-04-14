@@ -1,14 +1,39 @@
 class AbstractNode
   attr_accessor :node_type, :leftmost_child, :leftmost_sibling, :right_sibling, :parent, :is_visited
 
-  def initialize(node_type=nil, leftmost_child=nil, leftmost_sibling=nil, right_sibling=nil, parent=nil)
-    @node_type = node_type  # a symbol
-    @leftmost_child = leftmost_child
-    @leftmost_sibling = leftmost_sibling
-    @right_sibling = right_sibling
-    @parent = parent
-    @is_visited = false
-  end
+  #def initialize(node_type=nil, leftmost_child=nil, leftmost_sibling=nil, right_sibling=nil, parent=nil)
+   # @node_type = node_type  # a symbol
+   # @leftmost_child = leftmost_child
+   # @leftmost_sibling = leftmost_sibling
+   # @right_sibling = right_sibling
+   # @parent = parent
+   # @is_visited = false
+  #end
+
+	def initialize(node_type, *children)
+		@node_type = node_type
+		@children = children
+	end
+
+	def print_addr
+		puts self.to_s + ' ' + self.node_type.to_s
+		@children.each do |child|
+			if child != nil and !child.is_a? String and !child.is_a? Fixnum
+				child.print_addr
+			end
+		end
+	end
+
+	def print_relations
+		output = self.to_s
+		@children.each do |child|	
+			if child != nil and !child.is_a? String and !child.is_a? Fixnum
+				output += ' ' + child.to_s
+				child.print_relations
+			end	
+		end
+		puts output
+	end
 
   def children
     childs = []
@@ -114,22 +139,46 @@ module NeedsCompatibleTypes
 
 end
 
+class StmtsNode < AbstractNode
+end
+
+class StmtNode < AbstractNode
+end
+
+class Declar < AbstractNode
+end
+
+class Names < AbstractNode
+end
+
+class Modifier < AbstractNode
+end
+
+class Type < AbstractNode
+end
+
+class Expr < AbstractNode
+end
+
+class Subexpr < AbstractNode
+end
 
 class IfNode < AbstractNode
-  include NeedsBooleanPredicate
+  #include NeedsBooleanPredicate
 
-  def accept v
-    v.visit self
-  end
+  #def accept v
+    #v.visit self
+  #end
 end
 
-class ShiftNode < AbstractNode
-  include NeedsCompatibleTypes
-
-  def accept v
-    v.visit self
-  end
+class Return < AbstractNode
 end
+
+#class ShiftNode < AbstractNode
+  #include NeedsCompatibleTyType  #def accept v
+  #  v.visit self
+  #end
+#end
 
 
 class TypeChecking < ReflectiveVisitor

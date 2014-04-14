@@ -13,7 +13,7 @@ require 'racc/parser.rb'
 
 class CompilerLanguage < Racc::Parser
 
-module_eval(<<'...end new_compiler.y/module_eval...', 'new_compiler.y', 64)
+module_eval(<<'...end new_compiler.y/module_eval...', 'new_compiler.y', 38)
 
 	
 
@@ -83,8 +83,8 @@ racc_reduce_table = [
   1, 19, :_reduce_3,
   2, 19, :_reduce_4,
   1, 19, :_reduce_5,
-  2, 19, :_reduce_none,
-  2, 23, :_reduce_none,
+  2, 19, :_reduce_6,
+  2, 23, :_reduce_7,
   6, 20, :_reduce_8,
   4, 20, :_reduce_9,
   1, 26, :_reduce_10,
@@ -95,7 +95,7 @@ racc_reduce_table = [
   1, 21, :_reduce_15,
   1, 21, :_reduce_16,
   3, 21, :_reduce_17,
-  3, 21, :_reduce_none,
+  3, 21, :_reduce_18,
   3, 21, :_reduce_19,
   1, 27, :_reduce_20,
   1, 27, :_reduce_21,
@@ -184,162 +184,158 @@ Racc_debug_parser = false
 
 module_eval(<<'.,.,', 'new_compiler.y', 4)
   def _reduce_1(val, _values, result)
-    puts "stmts"
-										puts val.inspect
+    result = StmtsNode.new('stmts', val[0], val[1]) 
     result
   end
 .,.,
 
 # reduce 2 omitted
 
-module_eval(<<'.,.,', 'new_compiler.y', 7)
+module_eval(<<'.,.,', 'new_compiler.y', 6)
   def _reduce_3(val, _values, result)
-     puts "stmt"
-										puts val.inspect
+     result = StmtNode.new('stmt', val[0])
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'new_compiler.y', 7)
+  def _reduce_4(val, _values, result)
+    result = StmtNode.new('stmt', val[0])
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'new_compiler.y', 8)
+  def _reduce_5(val, _values, result)
+     result = StmtNode.new('stmt', val[0]) 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'new_compiler.y', 9)
-  def _reduce_4(val, _values, result)
-    puts "stmt"
-												puts val.inspect
+  def _reduce_6(val, _values, result)
+    result = StmtNode.new('stmt', val[0])
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'new_compiler.y', 10)
+  def _reduce_7(val, _values, result)
+    result = Return.new('return', val[0])
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'new_compiler.y', 11)
-  def _reduce_5(val, _values, result)
-     puts "stmt"
-								puts val.inspect
-    result
-  end
-.,.,
-
-# reduce 6 omitted
-
-# reduce 7 omitted
-
-module_eval(<<'.,.,', 'new_compiler.y', 18)
   def _reduce_8(val, _values, result)
-     puts "declar"
-																											puts val.inspect
+     result = Declar.new('declar', val[0], val[1], val[2], val[3], val[4])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 20)
+module_eval(<<'.,.,', 'new_compiler.y', 12)
   def _reduce_9(val, _values, result)
-     puts "declar"
-																					puts val.inspect
+    result = Declar.new('declar', val[0], val[1], val[2])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 22)
+module_eval(<<'.,.,', 'new_compiler.y', 13)
   def _reduce_10(val, _values, result)
-    puts "names"
-								puts val.inspect
+    result = Names.new('names', val[0])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 24)
+module_eval(<<'.,.,', 'new_compiler.y', 14)
   def _reduce_11(val, _values, result)
-    puts "names"
-			 											puts val.inspect
+    result = Names.new('names', val[0], val[2])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 26)
+module_eval(<<'.,.,', 'new_compiler.y', 15)
   def _reduce_12(val, _values, result)
-    puts "modifier"
-										puts val.inspect
+    result = Modifier.new('modifier', val[0])
     result
   end
 .,.,
 
 # reduce 13 omitted
 
-module_eval(<<'.,.,', 'new_compiler.y', 29)
+module_eval(<<'.,.,', 'new_compiler.y', 17)
   def _reduce_14(val, _values, result)
-    	puts "type"
-								puts val.inspect
+    	result = Type.new('type', val[0])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 31)
+module_eval(<<'.,.,', 'new_compiler.y', 18)
   def _reduce_15(val, _values, result)
-     puts "expr"
-									puts val.inspect
+     result = Expr.new('expr', val[0])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 33)
+module_eval(<<'.,.,', 'new_compiler.y', 19)
   def _reduce_16(val, _values, result)
-    puts "expr"
-									puts val.inspect
+     result = Expr.new('expr', val[0])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 35)
+module_eval(<<'.,.,', 'new_compiler.y', 20)
   def _reduce_17(val, _values, result)
-    puts "expr"
-												 puts val.inspect
+    result = Expr.new('expr', val[0],val[1],val[2])
     result
   end
 .,.,
 
-# reduce 18 omitted
+module_eval(<<'.,.,', 'new_compiler.y', 21)
+  def _reduce_18(val, _values, result)
+    result = Expr.new('expr', val[0], val[1], val[2])
+    result
+  end
+.,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 40)
+module_eval(<<'.,.,', 'new_compiler.y', 22)
   def _reduce_19(val, _values, result)
-    puts "expr"
-																			puts val.inspect
+    result = Expr.new('expr', val[0], val[1], val[2])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 42)
+module_eval(<<'.,.,', 'new_compiler.y', 23)
   def _reduce_20(val, _values, result)
-    puts "subexpr" 
-									puts val.inspect
+    result = Subexpr.new('subexpr', val[0]) 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 44)
+module_eval(<<'.,.,', 'new_compiler.y', 24)
   def _reduce_21(val, _values, result)
-    puts "subexpr"
-				 						puts val.inspect
+    result = Subexpr.new('subexpr', val[0])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 46)
+module_eval(<<'.,.,', 'new_compiler.y', 25)
   def _reduce_22(val, _values, result)
-    puts "subexpr"
-				 																puts val.inspect
+    result = Subexpr.new('subexpr', val[1])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 48)
+module_eval(<<'.,.,', 'new_compiler.y', 26)
   def _reduce_23(val, _values, result)
-    puts "if"
-																																puts val.inspect
+    result = Subexpr.new('subexpr', val[0], val[2], val[5])
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'new_compiler.y', 50)
+module_eval(<<'.,.,', 'new_compiler.y', 27)
   def _reduce_24(val, _values, result)
-    puts "if"
-																																																puts val.inspect
+    result = Subexpr.new('subexpr', val[0], val[2], val[5], val[7], val[9])
     result
   end
 .,.,
@@ -354,11 +350,8 @@ end   # class CompilerLanguage
 	parser = CompilerLanguage.new
 	begin
 		val = parser.scan_str( $stdin.read)
-		p val
-
-		#rescue ParseError => e
-		#	p e
-	#		puts e.backtrace.inspect
+		val.print_addr
+		val.print_relations
 	end
 
 

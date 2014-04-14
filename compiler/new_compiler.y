@@ -2,56 +2,30 @@ class CompilerLanguage
 start stmts
 token EQUALS NAME NUMBER CONST INT OP SEMICOLON OPENPAREN CLOSEPAREN OPENBRACE CLOSEBRACE COMMA IF ELSE RETURN
 rule
-	stmts: stmt stmts {puts "stmts"
-										puts val.inspect}
-			 |
-	stmt: declar    { puts "stmt"
-										puts val.inspect}
-			| expr SEMICOLON {puts "stmt"
-												puts val.inspect}
-			| if    { puts "stmt"
-								puts val.inspect}
-			#| assign SEMICOLON  { puts "stmt"
-			#											puts val.inspect}
-			| return SEMICOLON
-	
-	return: RETURN expr
-	declar: modifier type names EQUALS expr SEMICOLON { puts "declar"
-																											puts val.inspect}
-				| modifier type names SEMICOLON { puts "declar"
-																					puts val.inspect}
-	names: NAME  {puts "names"
-								puts val.inspect}
-			 | NAME COMMA names  {puts "names"
-			 											puts val.inspect}
-	modifier: CONST  {puts "modifier"
-										puts val.inspect}
+	stmts: stmt stmts {result = StmtsNode.new('stmts', val[0], val[1]) }
+			 |						
+	stmt: declar    { result = StmtNode.new('stmt', val[0])}
+			| expr SEMICOLON {result = StmtNode.new('stmt', val[0])}
+			| if    { result = StmtNode.new('stmt', val[0]) }
+			| return SEMICOLON {result = StmtNode.new('stmt', val[0])}  
+	return: RETURN expr  {result = Return.new('return', val[0])}
+	declar: modifier type names EQUALS expr SEMICOLON { result = Declar.new('declar', val[0], val[1], val[2], val[3], val[4])}
+				| modifier type names SEMICOLON {result = Declar.new('declar', val[0], val[1], val[2])}
+	names: NAME  {result = Names.new('names', val[0])}
+			 | NAME COMMA names  {result = Names.new('names', val[0], val[2])}
+	modifier: CONST  {result = Modifier.new('modifier', val[0])}
 					|
-	type: INT   {	puts "type"
-								puts val.inspect}
-	expr: NAME    { puts "expr"
-									puts val.inspect}
-			| NUMBER   {puts "expr"
-									puts val.inspect}
-			| subexpr OP expr {puts "expr"
-												 puts val.inspect}
-			| subexpr EQUALS expr
-			#| NAME OP expr  {puts val.inspect}
-			#| NUMBER OP expr  {puts val.inspect} 
-			| OPENPAREN expr CLOSEPAREN   {puts "expr"
-																			puts val.inspect}
-	subexpr: NAME  {puts "subexpr" 
-									puts val.inspect}
-				 | NUMBER  {puts "subexpr"
-				 						puts val.inspect}
-				 | OPENPAREN expr CLOSEPAREN  {puts "subexpr"
-				 																puts val.inspect}
-	if: IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE {puts "if"
-																																puts val.inspect} 
-		| IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE ELSE OPENBRACE stmts CLOSEBRACE  {puts "if"
-																																																puts val.inspect}
-	#assign: NAME EQUALS expr   {puts "assign"
-	#														puts val.inspect}
+	type: INT   {	result = Type.new('type', val[0])}
+	expr: NAME    { result = Expr.new('expr', val[0])}
+			| NUMBER   { result = Expr.new('expr', val[0])}
+			| subexpr OP expr {result = Expr.new('expr', val[0],val[1],val[2])}
+			| subexpr EQUALS expr {result = Expr.new('expr', val[0], val[1], val[2])}
+			| OPENPAREN expr CLOSEPAREN   {result = Expr.new('expr', val[0], val[1], val[2])}
+	subexpr: NAME  {result = Subexpr.new('subexpr', val[0]) }
+				 | NUMBER  {result = Subexpr.new('subexpr', val[0])}
+				 | OPENPAREN expr CLOSEPAREN  {result = Subexpr.new('subexpr', val[1])}
+	if: IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE {result = Subexpr.new('subexpr', val[0], val[2], val[5])} 
+		| IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE ELSE OPENBRACE stmts CLOSEBRACE  {result = Subexpr.new('subexpr', val[0], val[2], val[5], val[7], val[9])}
 end
 
 ---- header
@@ -69,11 +43,8 @@ end
 	parser = CompilerLanguage.new
 	begin
 		val = parser.scan_str( $stdin.read)
-		p val
-
-		#rescue ParseError => e
-		#	p e
-	#		puts e.backtrace.inspect
+		val.print_addr
+		val.print_relations
 	end
 
 
