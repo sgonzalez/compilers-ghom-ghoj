@@ -11,8 +11,8 @@ rule
 												puts val.inspect}
 			| if    { puts "stmt"
 								puts val.inspect}
-			| assign SEMICOLON  { puts "stmt"
-														puts val.inspect}
+			#| assign SEMICOLON  { puts "stmt"
+			#											puts val.inspect}
 			| return SEMICOLON
 	
 	return: RETURN expr
@@ -35,6 +35,7 @@ rule
 									puts val.inspect}
 			| subexpr OP expr {puts "expr"
 												 puts val.inspect}
+			| subexpr EQUALS expr
 			#| NAME OP expr  {puts val.inspect}
 			#| NUMBER OP expr  {puts val.inspect} 
 			| OPENPAREN expr CLOSEPAREN   {puts "expr"
@@ -49,8 +50,8 @@ rule
 																																puts val.inspect} 
 		| IF OPENPAREN expr CLOSEPAREN OPENBRACE stmts CLOSEBRACE ELSE OPENBRACE stmts CLOSEBRACE  {puts "if"
 																																																puts val.inspect}
-	assign: NAME EQUALS expr   {puts "assign"
-															puts val.inspect}
+	#assign: NAME EQUALS expr   {puts "assign"
+	#														puts val.inspect}
 end
 
 ---- header
